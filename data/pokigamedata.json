@@ -1,0 +1,875 @@
+{
+    "technology": "iframe",
+    "created_at": "2024-07-09T12:03:000000Z",
+    "developer_id": "e69abf61-5d7c-4a2c-9ba7-b9ee09fe3f31",
+    "developer_name": "ZnK Games",
+    "fullscreen": false,
+    "slug": "hide-and-seek-escape-games",
+    "orientation": "both",
+    "url": "https://poki.com/en/g/hide-and-seek-escape-games",
+    "name": "Hide and Seek",
+    "short_description": "Play Hide and Seek on the most popular website for free online games! Poki works on your mobile, tablet, or computer. No downloads, no login. Play now!",
+    "mobile_friendly": true,
+    "thumbnail_url": "https://img.poki-cdn.com/cdn-cgi/image//d735bd780d51c9a8aa21b33eafb65dcf/hide-and-seek-escape-games.png",
+    "related_games": [
+        "31748",
+        "31267",
+        "31255",
+        "31534",
+        "31438",
+        "31636",
+        "30999",
+        "30838",
+        "29501",
+        "30321",
+        "31834",
+        "30986",
+        "31151",
+        "30626",
+        "31741",
+        "29755",
+        "31626",
+        "29773",
+        "29416",
+        "31675",
+        "29885",
+        "30166",
+        "29160",
+        "30819",
+        "30992",
+        "31609",
+        "31765",
+        "29936",
+        "30370",
+        "30475",
+        "29538",
+        "30531",
+        "31297",
+        "31720",
+        "30038",
+        "30555",
+        "31793",
+        "29767",
+        "29969",
+        "29040",
+        "30728",
+        "29338",
+        "31613",
+        "30067",
+        "30668",
+        "30437",
+        "30063",
+        "31820",
+        "30698",
+        "30798",
+        "30926",
+        "30665",
+        "28356",
+        "31434",
+        "31914",
+        "30973",
+        "31761"
+    ],
+    "categories": [
+        "3",
+        "9",
+        "16",
+        "1140",
+        "1190"
+    ],
+    "desktop_friendly": true,
+    "site_game_id": "poki#31030",
+    "description": "<p> \nHide and Seek takes your favorite childhood game to a whole new level\u2014set in a school with a scary twist! The teacher isn't your ordinary hide and seek game player; she's out to catch you! Find the perfect hiding spot, use your quick reflexes to escape, and outsmart her at every turn. Rescue your teammates to earn coins and gain the upper hand. And here's the fun part: sometimes, the tables turn, and you get to chase and catch her! Ready for some high-stakes hide and seek?\n</p>\n\n<h3>How to play Hide and Seek?</h3>\n<p>\nUse WASD, the arrow keys, or click and drag to move!</p>\n\n<h3>Who created Hide and Seek?</h3>\n\n<p> Hide and Seek is created by ZnK Games. Play their other games on Poki: <a href=\"https://poki.com/en/g/school-escape-skip-games\">School Escape!</a>!</p>\n\n\n<h3>How can I play Hide and Seek for free?</h3>\n<p>You can play Hide and Seek for free on Poki.</p>\n\n<h3>Can I play Hide and Seek on mobile devices and desktop?</h3>\n<p> Hide and Seek can be played on your computer and mobile devices like phones and tablets.</p>",
+    "history": [
+        {
+            "upvotes": 204986,
+            "totalvotes": 242851,
+            "timestamp": 1765852736
+        },
+        {
+            "upvotes": 204805,
+            "totalvotes": 242645,
+            "timestamp": 1765765955
+        },
+        {
+            "upvotes": 204643,
+            "totalvotes": 242447,
+            "timestamp": 1765679813
+        },
+        {
+            "upvotes": 204451,
+            "totalvotes": 242217,
+            "timestamp": 1765592728
+        },
+        {
+            "upvotes": 204267,
+            "totalvotes": 242002,
+            "timestamp": 1765507088
+        },
+        {
+            "upvotes": 204101,
+            "totalvotes": 241802,
+            "timestamp": 1765420441
+        },
+        {
+            "upvotes": 203935,
+            "totalvotes": 241605,
+            "timestamp": 1765333743
+        },
+        {
+            "upvotes": 203748,
+            "totalvotes": 241384,
+            "timestamp": 1765247323
+        },
+        {
+            "upvotes": 203571,
+            "totalvotes": 241180,
+            "timestamp": 1765160997
+        },
+        {
+            "upvotes": 203404,
+            "totalvotes": 240991,
+            "timestamp": 1765075147
+        },
+        {
+            "upvotes": 203219,
+            "totalvotes": 240773,
+            "timestamp": 1764987416
+        },
+        {
+            "upvotes": 203041,
+            "totalvotes": 240560,
+            "timestamp": 1764901789
+        },
+        {
+            "upvotes": 202893,
+            "totalvotes": 240381,
+            "timestamp": 1764815247
+        },
+        {
+            "upvotes": 202761,
+            "totalvotes": 240221,
+            "timestamp": 1764728911
+        },
+        {
+            "upvotes": 202618,
+            "totalvotes": 240049,
+            "timestamp": 1764642289
+        },
+        {
+            "upvotes": 202466,
+            "totalvotes": 239869,
+            "timestamp": 1764557056
+        },
+        {
+            "upvotes": 202315,
+            "totalvotes": 239693,
+            "timestamp": 1764470276
+        },
+        {
+            "upvotes": 202135,
+            "totalvotes": 239476,
+            "timestamp": 1764382989
+        },
+        {
+            "upvotes": 201976,
+            "totalvotes": 239277,
+            "timestamp": 1764296374
+        },
+        {
+            "upvotes": 201822,
+            "totalvotes": 239095,
+            "timestamp": 1764210056
+        },
+        {
+            "upvotes": 201662,
+            "totalvotes": 238912,
+            "timestamp": 1764123992
+        },
+        {
+            "upvotes": 201497,
+            "totalvotes": 238718,
+            "timestamp": 1764037285
+        },
+        {
+            "upvotes": 201345,
+            "totalvotes": 238542,
+            "timestamp": 1763951321
+        },
+        {
+            "upvotes": 201189,
+            "totalvotes": 238361,
+            "timestamp": 1763865742
+        },
+        {
+            "upvotes": 200990,
+            "totalvotes": 238127,
+            "timestamp": 1763778054
+        },
+        {
+            "upvotes": 200802,
+            "totalvotes": 237903,
+            "timestamp": 1763691514
+        },
+        {
+            "upvotes": 200636,
+            "totalvotes": 237714,
+            "timestamp": 1763605210
+        },
+        {
+            "upvotes": 200485,
+            "totalvotes": 237533,
+            "timestamp": 1763519160
+        },
+        {
+            "upvotes": 200318,
+            "totalvotes": 237340,
+            "timestamp": 1763432793
+        },
+        {
+            "upvotes": 200167,
+            "totalvotes": 237167,
+            "timestamp": 1763346381
+        },
+        {
+            "upvotes": 199990,
+            "totalvotes": 236959,
+            "timestamp": 1763259958
+        },
+        {
+            "upvotes": 199791,
+            "totalvotes": 236729,
+            "timestamp": 1763173084
+        },
+        {
+            "upvotes": 199581,
+            "totalvotes": 236482,
+            "timestamp": 1763086986
+        },
+        {
+            "upvotes": 199395,
+            "totalvotes": 236259,
+            "timestamp": 1763000853
+        },
+        {
+            "upvotes": 199211,
+            "totalvotes": 236040,
+            "timestamp": 1762914178
+        },
+        {
+            "upvotes": 199034,
+            "totalvotes": 235835,
+            "timestamp": 1762827857
+        },
+        {
+            "upvotes": 198848,
+            "totalvotes": 235625,
+            "timestamp": 1762741649
+        },
+        {
+            "upvotes": 198647,
+            "totalvotes": 235395,
+            "timestamp": 1762655269
+        },
+        {
+            "upvotes": 198426,
+            "totalvotes": 235135,
+            "timestamp": 1762568065
+        },
+        {
+            "upvotes": 198238,
+            "totalvotes": 234910,
+            "timestamp": 1762482252
+        },
+        {
+            "upvotes": 197905,
+            "totalvotes": 234497,
+            "timestamp": 1762309195
+        },
+        {
+            "upvotes": 197740,
+            "totalvotes": 234303,
+            "timestamp": 1762223322
+        },
+        {
+            "upvotes": 197588,
+            "totalvotes": 234117,
+            "timestamp": 1762137194
+        },
+        {
+            "upvotes": 197419,
+            "totalvotes": 233914,
+            "timestamp": 1762050324
+        },
+        {
+            "upvotes": 197223,
+            "totalvotes": 233690,
+            "timestamp": 1761963711
+        },
+        {
+            "upvotes": 197044,
+            "totalvotes": 233465,
+            "timestamp": 1761877703
+        },
+        {
+            "upvotes": 196855,
+            "totalvotes": 233249,
+            "timestamp": 1761791179
+        },
+        {
+            "upvotes": 196701,
+            "totalvotes": 233062,
+            "timestamp": 1761704655
+        },
+        {
+            "upvotes": 196524,
+            "totalvotes": 232855,
+            "timestamp": 1761618091
+        },
+        {
+            "upvotes": 196381,
+            "totalvotes": 232688,
+            "timestamp": 1761531974
+        },
+        {
+            "upvotes": 196208,
+            "totalvotes": 232487,
+            "timestamp": 1761445461
+        },
+        {
+            "upvotes": 195996,
+            "totalvotes": 232244,
+            "timestamp": 1761358801
+        },
+        {
+            "upvotes": 195802,
+            "totalvotes": 232019,
+            "timestamp": 1761271882
+        },
+        {
+            "upvotes": 195627,
+            "totalvotes": 231818,
+            "timestamp": 1761186250
+        },
+        {
+            "upvotes": 195470,
+            "totalvotes": 231630,
+            "timestamp": 1761099793
+        },
+        {
+            "upvotes": 195313,
+            "totalvotes": 231439,
+            "timestamp": 1761013145
+        },
+        {
+            "upvotes": 195171,
+            "totalvotes": 231271,
+            "timestamp": 1760927199
+        },
+        {
+            "upvotes": 195000,
+            "totalvotes": 231075,
+            "timestamp": 1760840949
+        },
+        {
+            "upvotes": 194819,
+            "totalvotes": 230870,
+            "timestamp": 1760752965
+        },
+        {
+            "upvotes": 194654,
+            "totalvotes": 230669,
+            "timestamp": 1760667245
+        },
+        {
+            "upvotes": 194518,
+            "totalvotes": 230508,
+            "timestamp": 1760580817
+        },
+        {
+            "upvotes": 194378,
+            "totalvotes": 230341,
+            "timestamp": 1760494789
+        },
+        {
+            "upvotes": 194235,
+            "totalvotes": 230165,
+            "timestamp": 1760408188
+        },
+        {
+            "upvotes": 194091,
+            "totalvotes": 229986,
+            "timestamp": 1760322290
+        },
+        {
+            "upvotes": 193935,
+            "totalvotes": 229794,
+            "timestamp": 1760235433
+        },
+        {
+            "upvotes": 193780,
+            "totalvotes": 229605,
+            "timestamp": 1760148341
+        },
+        {
+            "upvotes": 193626,
+            "totalvotes": 229422,
+            "timestamp": 1760062230
+        },
+        {
+            "upvotes": 193483,
+            "totalvotes": 229257,
+            "timestamp": 1759975916
+        },
+        {
+            "upvotes": 193319,
+            "totalvotes": 229059,
+            "timestamp": 1759889336
+        },
+        {
+            "upvotes": 193166,
+            "totalvotes": 228884,
+            "timestamp": 1759803385
+        },
+        {
+            "upvotes": 193028,
+            "totalvotes": 228719,
+            "timestamp": 1759716692
+        },
+        {
+            "upvotes": 192879,
+            "totalvotes": 228537,
+            "timestamp": 1759630758
+        },
+        {
+            "upvotes": 192701,
+            "totalvotes": 228323,
+            "timestamp": 1759543491
+        },
+        {
+            "upvotes": 192521,
+            "totalvotes": 228106,
+            "timestamp": 1759457372
+        },
+        {
+            "upvotes": 192382,
+            "totalvotes": 227935,
+            "timestamp": 1759370882
+        },
+        {
+            "upvotes": 192234,
+            "totalvotes": 227757,
+            "timestamp": 1759285610
+        },
+        {
+            "upvotes": 192067,
+            "totalvotes": 227556,
+            "timestamp": 1759198282
+        },
+        {
+            "upvotes": 191932,
+            "totalvotes": 227385,
+            "timestamp": 1759112237
+        },
+        {
+            "upvotes": 191786,
+            "totalvotes": 227201,
+            "timestamp": 1759026499
+        },
+        {
+            "upvotes": 191580,
+            "totalvotes": 226954,
+            "timestamp": 1758938846
+        },
+        {
+            "upvotes": 191387,
+            "totalvotes": 226731,
+            "timestamp": 1758852901
+        },
+        {
+            "upvotes": 191248,
+            "totalvotes": 226555,
+            "timestamp": 1758766831
+        },
+        {
+            "upvotes": 191087,
+            "totalvotes": 226355,
+            "timestamp": 1758679820
+        },
+        {
+            "upvotes": 190924,
+            "totalvotes": 226160,
+            "timestamp": 1758593696
+        },
+        {
+            "upvotes": 190777,
+            "totalvotes": 225984,
+            "timestamp": 1758507601
+        },
+        {
+            "upvotes": 190588,
+            "totalvotes": 225760,
+            "timestamp": 1758421600
+        },
+        {
+            "upvotes": 190395,
+            "totalvotes": 225531,
+            "timestamp": 1758333877
+        },
+        {
+            "upvotes": 190237,
+            "totalvotes": 225346,
+            "timestamp": 1758247896
+        },
+        {
+            "upvotes": 190090,
+            "totalvotes": 225158,
+            "timestamp": 1758161015
+        },
+        {
+            "upvotes": 189922,
+            "totalvotes": 224952,
+            "timestamp": 1758075194
+        },
+        {
+            "upvotes": 189773,
+            "totalvotes": 224766,
+            "timestamp": 1757988267
+        },
+        {
+            "upvotes": 189653,
+            "totalvotes": 224621,
+            "timestamp": 1757903069
+        },
+        {
+            "upvotes": 189476,
+            "totalvotes": 224410,
+            "timestamp": 1757816750
+        },
+        {
+            "upvotes": 189269,
+            "totalvotes": 224156,
+            "timestamp": 1757728643
+        },
+        {
+            "upvotes": 189122,
+            "totalvotes": 223981,
+            "timestamp": 1757643262
+        },
+        {
+            "upvotes": 188982,
+            "totalvotes": 223809,
+            "timestamp": 1757557533
+        },
+        {
+            "upvotes": 188856,
+            "totalvotes": 223645,
+            "timestamp": 1757470094
+        },
+        {
+            "upvotes": 188703,
+            "totalvotes": 223467,
+            "timestamp": 1757384127
+        },
+        {
+            "upvotes": 188561,
+            "totalvotes": 223311,
+            "timestamp": 1757298346
+        },
+        {
+            "upvotes": 188374,
+            "totalvotes": 223082,
+            "timestamp": 1757211388
+        },
+        {
+            "upvotes": 188197,
+            "totalvotes": 222871,
+            "timestamp": 1757124150
+        },
+        {
+            "upvotes": 188023,
+            "totalvotes": 222665,
+            "timestamp": 1757038281
+        },
+        {
+            "upvotes": 187849,
+            "totalvotes": 222462,
+            "timestamp": 1756951398
+        },
+        {
+            "upvotes": 187703,
+            "totalvotes": 222280,
+            "timestamp": 1756865368
+        },
+        {
+            "upvotes": 187549,
+            "totalvotes": 222090,
+            "timestamp": 1756779782
+        },
+        {
+            "upvotes": 187386,
+            "totalvotes": 221889,
+            "timestamp": 1756694368
+        },
+        {
+            "upvotes": 187239,
+            "totalvotes": 221712,
+            "timestamp": 1756607380
+        },
+        {
+            "upvotes": 187066,
+            "totalvotes": 221500,
+            "timestamp": 1756519668
+        },
+        {
+            "upvotes": 186878,
+            "totalvotes": 221259,
+            "timestamp": 1756433786
+        },
+        {
+            "upvotes": 186723,
+            "totalvotes": 221069,
+            "timestamp": 1756347308
+        },
+        {
+            "upvotes": 186650,
+            "totalvotes": 220984,
+            "timestamp": 1756308354
+        },
+        {
+            "upvotes": 186179,
+            "totalvotes": 220421,
+            "timestamp": 1756088927
+        },
+        {
+            "upvotes": 185996,
+            "totalvotes": 220200,
+            "timestamp": 1756002863
+        },
+        {
+            "upvotes": 185826,
+            "totalvotes": 220002,
+            "timestamp": 1755915502
+        },
+        {
+            "upvotes": 185644,
+            "totalvotes": 219784,
+            "timestamp": 1755829666
+        },
+        {
+            "upvotes": 185465,
+            "totalvotes": 219574,
+            "timestamp": 1755742706
+        },
+        {
+            "upvotes": 185274,
+            "totalvotes": 219342,
+            "timestamp": 1755656262
+        },
+        {
+            "upvotes": 185090,
+            "totalvotes": 219116,
+            "timestamp": 1755570386
+        },
+        {
+            "upvotes": 184922,
+            "totalvotes": 218894,
+            "timestamp": 1755484733
+        },
+        {
+            "upvotes": 184754,
+            "totalvotes": 218690,
+            "timestamp": 1755398264
+        },
+        {
+            "upvotes": 184569,
+            "totalvotes": 218457,
+            "timestamp": 1755310931
+        },
+        {
+            "upvotes": 184393,
+            "totalvotes": 218245,
+            "timestamp": 1755225384
+        },
+        {
+            "upvotes": 184235,
+            "totalvotes": 218054,
+            "timestamp": 1755138821
+        },
+        {
+            "upvotes": 184050,
+            "totalvotes": 217833,
+            "timestamp": 1755052142
+        },
+        {
+            "upvotes": 183880,
+            "totalvotes": 217630,
+            "timestamp": 1754966146
+        },
+        {
+            "upvotes": 183709,
+            "totalvotes": 217412,
+            "timestamp": 1754880558
+        },
+        {
+            "upvotes": 183542,
+            "totalvotes": 217208,
+            "timestamp": 1754793827
+        },
+        {
+            "upvotes": 183344,
+            "totalvotes": 216962,
+            "timestamp": 1754706449
+        },
+        {
+            "upvotes": 183153,
+            "totalvotes": 216723,
+            "timestamp": 1754620836
+        },
+        {
+            "upvotes": 182962,
+            "totalvotes": 216485,
+            "timestamp": 1754534742
+        },
+        {
+            "upvotes": 182773,
+            "totalvotes": 216254,
+            "timestamp": 1754448093
+        },
+        {
+            "upvotes": 182595,
+            "totalvotes": 216041,
+            "timestamp": 1754362175
+        },
+        {
+            "upvotes": 182397,
+            "totalvotes": 215804,
+            "timestamp": 1754275910
+        },
+        {
+            "upvotes": 182189,
+            "totalvotes": 215560,
+            "timestamp": 1754189237
+        },
+        {
+            "upvotes": 181967,
+            "totalvotes": 215290,
+            "timestamp": 1754101886
+        },
+        {
+            "upvotes": 181778,
+            "totalvotes": 215049,
+            "timestamp": 1754017454
+        },
+        {
+            "upvotes": 181571,
+            "totalvotes": 214804,
+            "timestamp": 1753929839
+        },
+        {
+            "upvotes": 181372,
+            "totalvotes": 214551,
+            "timestamp": 1753843197
+        },
+        {
+            "upvotes": 181168,
+            "totalvotes": 214292,
+            "timestamp": 1753757344
+        },
+        {
+            "upvotes": 180973,
+            "totalvotes": 214047,
+            "timestamp": 1753670938
+        },
+        {
+            "upvotes": 180791,
+            "totalvotes": 213829,
+            "timestamp": 1753584551
+        },
+        {
+            "upvotes": 180600,
+            "totalvotes": 213590,
+            "timestamp": 1753497388
+        },
+        {
+            "upvotes": 180398,
+            "totalvotes": 213346,
+            "timestamp": 1753411537
+        },
+        {
+            "upvotes": 180196,
+            "totalvotes": 213099,
+            "timestamp": 1753324641
+        },
+        {
+            "upvotes": 180011,
+            "totalvotes": 212881,
+            "timestamp": 1753238387
+        },
+        {
+            "upvotes": 179835,
+            "totalvotes": 212660,
+            "timestamp": 1753151949
+        },
+        {
+            "upvotes": 179651,
+            "totalvotes": 212428,
+            "timestamp": 1753066080
+        },
+        {
+            "upvotes": 179480,
+            "totalvotes": 212214,
+            "timestamp": 1752979422
+        },
+        {
+            "upvotes": 179322,
+            "totalvotes": 212015,
+            "timestamp": 1752892246
+        },
+        {
+            "upvotes": 179126,
+            "totalvotes": 211775,
+            "timestamp": 1752806169
+        },
+        {
+            "upvotes": 178914,
+            "totalvotes": 211509,
+            "timestamp": 1752720090
+        },
+        {
+            "upvotes": 178732,
+            "totalvotes": 211278,
+            "timestamp": 1752633643
+        },
+        {
+            "upvotes": 178520,
+            "totalvotes": 211027,
+            "timestamp": 1752547016
+        },
+        {
+            "upvotes": 178302,
+            "totalvotes": 210773,
+            "timestamp": 1752461002
+        },
+        {
+            "upvotes": 178095,
+            "totalvotes": 210504,
+            "timestamp": 1752374576
+        },
+        {
+            "upvotes": 177866,
+            "totalvotes": 210238,
+            "timestamp": 1752287614
+        },
+        {
+            "upvotes": 177743,
+            "totalvotes": 210088,
+            "timestamp": 1752239372
+        },
+        {
+            "upvotes": 177743,
+            "totalvotes": 210088,
+            "timestamp": 1752238434
+        }
+    ]
+}
