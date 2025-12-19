@@ -28,8 +28,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-import game from "@/data/pokigamedata.json";
-
 /* ---------------- chart config ---------------- */
 
 const chartConfig = {
@@ -43,23 +41,36 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-/* ---------------- data prep ---------------- */
+type HistoryItem = {
+  timestamp: number;
+  totalvotes: number;
+  upvotes: number;
+};
 
-const history = [...game.history].sort(
-  (a: any, b: any) => a.timestamp - b.timestamp
-);
+export function GameVotesChart({ history }: { history: HistoryItem[] }) {
+  const [timeRange, setTimeRange] = React.useState<
+    "7d" | "30d" | "90d" | "all"
+  >("30d");
 
-const chartData = history.map((h: any, i: number) => ({
-  date: new Date(h.timestamp * 1000).toISOString(),
-  daily_new_totalvotes: i === 0 ? 0 : h.totalvotes - history[i - 1].totalvotes,
-  daily_new_upvotes: i === 0 ? 0 : h.upvotes - history[i - 1].upvotes,
-}));
+  const sorted = React.useMemo(
+    () => [...history].sort((a, b) => a.timestamp - b.timestamp),
+    [history]
+  );
 
-export function GameVotesChart() {
-  const [timeRange, setTimeRange] = React.useState("30d");
+  const chartData = React.useMemo(
+    () =>
+      sorted.map((h, i) => ({
+        date: new Date(h.timestamp * 1000).toISOString(),
+        daily_new_totalvotes:
+          i === 0 ? 0 : h.totalvotes - sorted[i - 1].totalvotes,
+        daily_new_upvotes: i === 0 ? 0 : h.upvotes - sorted[i - 1].upvotes,
+      })),
+    [sorted]
+  );
 
-  const filteredData = chartData.filter((item) => {
-    const date = new Date(item.date);
+  const filteredData = React.useMemo(() => {
+    if (timeRange === "all") return chartData;
+
     const referenceDate = new Date(chartData.at(-1)!.date);
 
     let days = 30;
@@ -69,8 +80,8 @@ export function GameVotesChart() {
     const start = new Date(referenceDate);
     start.setDate(start.getDate() - days);
 
-    return date >= start;
-  });
+    return chartData.filter((item) => new Date(item.date) >= start);
+  }, [chartData, timeRange]);
 
   return (
     <Card className="pt-0">
@@ -82,7 +93,10 @@ export function GameVotesChart() {
           </CardDescription>
         </div>
 
-        <Select value={timeRange} onValueChange={setTimeRange}>
+        <Select
+          value={timeRange}
+          onValueChange={(v) => setTimeRange(v as "all" | "7d" | "30d" | "90d")}
+        >
           <SelectTrigger className="hidden w-40 sm:flex">
             <SelectValue />
           </SelectTrigger>
@@ -90,6 +104,7 @@ export function GameVotesChart() {
             <SelectItem value="7d">Last 7 days</SelectItem>
             <SelectItem value="30d">Last 30 days</SelectItem>
             <SelectItem value="90d">Last 90 days</SelectItem>
+            <SelectItem value="all">All time</SelectItem>
           </SelectContent>
         </Select>
       </CardHeader>
@@ -99,10 +114,7 @@ export function GameVotesChart() {
           config={chartConfig}
           className="aspect-auto h-[250px] w-full"
         >
-          <AreaChart
-            data={filteredData}
-            margin={{ left: 0, right: 0, top: 8, bottom: 0 }}
-          >
+          <AreaChart data={filteredData}>
             <defs>
               <linearGradient id="fillTotal" x1="0" y1="0" x2="0" y2="1">
                 <stop
@@ -138,7 +150,6 @@ export function GameVotesChart() {
               tickLine={false}
               axisLine={false}
               tickMargin={8}
-              minTickGap={32}
               tickFormatter={(v) =>
                 new Date(v).toLocaleDateString("en-US", {
                   month: "short",
@@ -146,19 +157,19 @@ export function GameVotesChart() {
                 })
               }
             />
+
             <YAxis
               tickLine={false}
               axisLine={false}
               tickMargin={8}
-              width={32}
-              padding={{ top: 0, bottom: 0 }}
               tickFormatter={(v) => Intl.NumberFormat().format(v)}
             />
+
             <ChartTooltip
               content={
                 <ChartTooltipContent
-                  labelFormatter={(value) =>
-                    new Date(value).toLocaleDateString(undefined, {
+                  labelFormatter={(v) =>
+                    new Date(v).toLocaleDateString(undefined, {
                       year: "numeric",
                       month: "short",
                       day: "numeric",
