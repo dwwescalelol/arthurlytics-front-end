@@ -24,7 +24,7 @@ export function GameStats({ game }: { game: any }) {
   const ratingColor = `hsl(${hue}, 70%, 45%)`;
 
   return (
-    <div className="border-l border-r px-10 flex items-center">
+    <div className="border-l px-10">
       <div className="grid grid-cols-2 gap-6 w-full">
         <Stat label="Total votes" value={currTotal} />
         <Stat
@@ -67,6 +67,7 @@ function Stat({ label, value, color, className }: any) {
     </div>
   );
 }
+
 function Delta({
   label,
   value,
