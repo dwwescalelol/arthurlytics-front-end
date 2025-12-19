@@ -1,10 +1,10 @@
 import underConstruction from "@/app/icons/undraw_under-construction_hdrn.svg";
 import { InDevelopment } from "@/components/in-development";
 
-export default function CategoriesPage() {
+export default function ContactPage() {
   return (
     <InDevelopment
-      title="Categories"
+      title="Contact Page"
       description="In developemnt, coming soon!"
       svgPath={underConstruction}
     />
