@@ -8,7 +8,7 @@ export function GameHeader({ game }: { game: any }) {
   return (
     <div className="flex gap-4">
       {/* IMAGE */}
-      <div className="relative h-56 w-48 shrink-0 overflow-hidden rounded-md border">
+      <div className="relative h-56 w-48 shrink-0 overflow-hidden rounded-md">
         <Image
           src={game.thumbnail_url}
           alt={game.name}
