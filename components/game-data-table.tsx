@@ -26,6 +26,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+
 import { Checkbox } from "@/components/ui/checkbox";
 
 import {
@@ -41,9 +42,19 @@ import {
 import { ArrowUp, ArrowDown } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 
-import allgames from "@/data/allgames.json";
 import { Game } from "@/types/game";
 import { columns } from "./game-columns";
+
+const API_URL =
+  "https://by9omosqo0.execute-api.eu-west-2.amazonaws.com/prod/allgames";
+
+type GamesResponse = {
+  data: Game[];
+  meta: {
+    page: number;
+    totalPages: number;
+  };
+};
 
 const getPages = (page: number, total: number) => {
   const pages: (number | "...")[] = [];
@@ -67,14 +78,38 @@ export function GameDataTable() {
   );
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [sorting, setSorting] = useState<SortingState>([]);
-  const [page, setPage] = useState(allgames.meta.page);
-
   const [sites, setSites] = useState<string[]>(["msn", "poki", "crazy"]);
+
+  const [page, setPage] = useState(1);
+  const [data, setData] = useState<Game[]>([]);
+  const [totalPages, setTotalPages] = useState(1);
+  const [loading, setLoading] = useState(false);
 
   const cols = useMemo(() => columns(timeframe), [timeframe]);
 
+  useEffect(() => {
+    setLoading(true);
+
+    const sortParam = sorting[0]?.id;
+
+    const url = new URL(API_URL);
+    url.searchParams.set("page", String(page));
+
+    if (sortParam) {
+      url.searchParams.set("sort", sortParam);
+    }
+
+    fetch(url.toString())
+      .then((res) => res.json())
+      .then((json: GamesResponse) => {
+        setData(json.data);
+        setTotalPages(json.meta.totalPages);
+      })
+      .finally(() => setLoading(false));
+  }, [page, sorting]);
+
   const table = useReactTable({
-    data: allgames.data as Game[],
+    data,
     columns: cols,
     state: {
       columnFilters,
@@ -84,14 +119,13 @@ export function GameDataTable() {
     onSortingChange: setSorting,
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
-    getSortedRowModel: getSortedRowModel(),
+    manualSorting: true,
   });
 
   useEffect(() => {
     table.getColumn("site_id")?.setFilterValue(sites);
   }, [sites, table]);
 
-  const { totalPages } = allgames.meta;
   const pages = getPages(page, totalPages);
 
   return (
@@ -175,7 +209,13 @@ export function GameDataTable() {
           </TableHeader>
 
           <TableBody>
-            {table.getRowModel().rows.length ? (
+            {loading ? (
+              <TableRow>
+                <TableCell colSpan={cols.length} className="h-24 text-center">
+                  Loading…
+                </TableCell>
+              </TableRow>
+            ) : table.getRowModel().rows.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow key={row.id}>
                   {row.getVisibleCells().map((cell) => (
