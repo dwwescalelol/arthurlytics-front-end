@@ -1,5 +1,4 @@
 import { Card } from "@/components/ui/card";
-
 import { GameVotesChart } from "@/components/game-votes-chart";
 import { GameHeader } from "../../game/components/GameHeader";
 import { GameStats } from "../../game/components/GameStats";
@@ -13,7 +12,7 @@ export default async function Page({
 }) {
   const { key } = await params;
 
-  if (typeof key !== "string" || !key.includes("-")) {
+  if (!key.includes("-")) {
     throw new Error("Invalid game key");
   }
 
@@ -35,7 +34,7 @@ export default async function Page({
   return (
     <div className="space-y-6">
       <Card>
-        <div className="grid grid-cols-[minmax(320px,420px)_1fr_auto] gap-8 p-6">
+        <div className="grid grid-cols-[auto_1fr_auto_auto] gap-8 p-6">
           <GameHeader game={game} />
           <GameStats game={game} />
           <GameMeta game={game} />
@@ -43,7 +42,6 @@ export default async function Page({
       </Card>
 
       <GameDescription game={game} />
-
       <GameVotesChart history={game.history} />
     </div>
   );
