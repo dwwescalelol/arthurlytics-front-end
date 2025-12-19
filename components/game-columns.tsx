@@ -1,10 +1,10 @@
 import { ColumnDef, FilterFn } from "@tanstack/react-table";
-import { Game } from "@/types/game";
+import { GameStats } from "@/types/game-stats";
 import { ExternalLink, ArrowUp, ArrowDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
-const siteFilterFn: FilterFn<Game> = (row, columnId, filterValue) => {
+const siteFilterFn: FilterFn<GameStats> = (row, columnId, filterValue) => {
   if (!Array.isArray(filterValue) || filterValue.length === 0) return true;
   return filterValue.includes(row.getValue(columnId));
 };
@@ -29,7 +29,7 @@ const Delta = ({ value }: { value?: number | null }) => {
 
 export const columns = (
   timeframe: "daily" | "weekly" | "monthly"
-): ColumnDef<Game>[] => [
+): ColumnDef<GameStats>[] => [
   {
     accessorKey: "site_rank",
     header: "Site Rank",

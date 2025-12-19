@@ -1,6 +1,6 @@
 type NullableNumber = number | null;
 
-export type Game = {
+export type GameStats = {
   site_id: string;
   game_id: string;
   name: string;

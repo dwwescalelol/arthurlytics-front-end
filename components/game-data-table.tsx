@@ -9,7 +9,7 @@ import {
 } from "@tanstack/react-table";
 import { useEffect, useMemo, useState } from "react";
 
-import { Game } from "@/types/game";
+import { GameStats } from "@/types/game-stats";
 import { columns } from "./game-columns";
 import { GameTableToolbar } from "./game-table-toolbar";
 import { GameTable } from "./game-table";
@@ -19,7 +19,7 @@ const API_URL =
   "https://by9omosqo0.execute-api.eu-west-2.amazonaws.com/prod/allgames";
 
 type GamesResponse = {
-  data: Game[];
+  data: GameStats[];
   meta: {
     page: number;
     totalPages: number;
@@ -35,7 +35,7 @@ export function GameDataTable() {
   const [sites, setSites] = useState<string[]>(["msn", "poki", "crazy"]);
 
   const [page, setPage] = useState(1);
-  const [data, setData] = useState<Game[]>([]);
+  const [data, setData] = useState<GameStats[]>([]);
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(false);
 
