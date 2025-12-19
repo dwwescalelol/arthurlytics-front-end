@@ -31,13 +31,18 @@ export default async function Page({
 
   const game = await res.json();
 
+  console.log("GAME OBJECT:", game);
+
   return (
     <div className="space-y-6">
+      {/* META CARD */}
+      <GameMeta game={game} />
+
+      {/* MAIN INFO CARD */}
       <Card>
-        <div className="grid grid-cols-[auto_1fr_auto_auto] gap-8 p-6">
+        <div className="grid grid-cols-[auto_1fr_auto] gap-8 p-6">
           <GameHeader game={game} />
           <GameStats game={game} />
-          <GameMeta game={game} />
         </div>
       </Card>
 
