@@ -4,6 +4,7 @@ import { GameHeader } from "../../game/components/GameHeader";
 import { GameStats } from "../../game/components/GameStats";
 import { GameMeta } from "../../game/components/GameMeta";
 import { GameDescription } from "../../game/components/GameDescription";
+import { PageFadeIn } from "@/components/page-fade-in";
 
 export default async function Page({
   params,
@@ -22,7 +23,7 @@ export default async function Page({
 
   const res = await fetch(
     `https://by9omosqo0.execute-api.eu-west-2.amazonaws.com/prod/gamehistory?site=${site}&id=${id}`,
-    { cache: "no-store" }
+    { next: { revalidate: 60 } }
   );
 
   if (!res.ok) {
@@ -30,24 +31,26 @@ export default async function Page({
   }
 
   const game = await res.json();
-
   console.log("GAME OBJECT:", game);
+  console.log("GAME OBJECT:", res.url);
 
   return (
-    <div className="space-y-6">
-      {/* META CARD */}
-      <GameMeta game={game} />
+    <PageFadeIn>
+      <div className="space-y-6">
+        {/* META CARD */}
+        <GameMeta game={game} />
 
-      {/* MAIN INFO CARD */}
-      <Card>
-        <div className="grid grid-cols-[auto_1fr_auto] gap-8 p-6">
-          <GameHeader game={game} />
-          <GameStats game={game} />
-        </div>
-      </Card>
+        {/* MAIN INFO CARD */}
+        <Card>
+          <div className="grid grid-cols-[auto_1fr_auto] gap-8 p-6">
+            <GameHeader game={game} />
+            <GameStats game={game} />
+          </div>
+        </Card>
 
-      <GameDescription game={game} />
-      <GameVotesChart history={game.history} />
-    </div>
+        <GameDescription game={game} />
+        <GameVotesChart history={game.history} />
+      </div>
+    </PageFadeIn>
   );
 }
