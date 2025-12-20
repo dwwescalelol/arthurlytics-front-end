@@ -38,7 +38,7 @@ export function GameMetaTags({ game }: { game: Game }) {
   };
 
   return (
-    <Card className="p-1" style={{ width: WIDTH }}>
+    <Card className="p-1 w-fit min-w-0 max-w-[500px]">
       <div className="flex items-center gap-1 ">
         {canLeft && (
           <div className="opacity-">
