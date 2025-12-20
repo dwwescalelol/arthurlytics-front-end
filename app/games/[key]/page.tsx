@@ -31,8 +31,6 @@ export default async function Page({
   }
 
   const game = await res.json();
-  console.log("GAME OBJECT:", game);
-  console.log("GAME OBJECT:", res.url);
 
   return (
     <PageFadeIn>
