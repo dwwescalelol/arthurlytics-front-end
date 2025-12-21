@@ -15,13 +15,15 @@ import {
   SiWikipedia,
   SiSteam,
 } from "react-icons/si";
+import { Link } from "lucide-react";
 
 const linkMap: Record<string, { icon: React.ElementType; label: string }> = {
-  apple_play: { icon: SiApple, label: "Apple App Store" },
+  apple_store: { icon: SiApple, label: "App Store" },
   google_play: { icon: SiGoogleplay, label: "Google Play" },
   fandom: { icon: SiFandom, label: "Fandom Wiki" },
   wikipedia: { icon: SiWikipedia, label: "Wikipedia" },
   steam: { icon: SiSteam, label: "Steam" },
+  source: { icon: Link, label: "Source Site" },
 };
 
 export function GameMetaLinks({ game }: { game: Game }) {

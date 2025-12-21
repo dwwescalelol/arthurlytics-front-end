@@ -1,5 +1,3 @@
-"use client";
-
 import { Card } from "@/components/ui/card";
 import {
   Tooltip,
@@ -11,8 +9,7 @@ import { Game } from "@/types/game";
 import {
   Smartphone,
   Monitor,
-  Smartphone as PortraitIcon,
-  Monitor as LandscapeIcon,
+  Maximize,
   Code,
   Server,
   Globe,
@@ -76,13 +73,13 @@ export function GameMetaCapabilities({ game }: { game: Game }) {
               {(game.orientation === "portrait" ||
                 game.orientation === "both") && (
                 <Icon tip="Portrait">
-                  <PortraitIcon className="h-4 w-4" />
+                  <Smartphone className="h-4 w-4" />
                 </Icon>
               )}
               {(game.orientation === "landscape" ||
                 game.orientation === "both") && (
                 <Icon tip="Landscape">
-                  <LandscapeIcon className="h-4 w-4" />
+                  <Monitor className="h-4 w-4" />
                 </Icon>
               )}
             </>
@@ -99,6 +96,13 @@ export function GameMetaCapabilities({ game }: { game: Game }) {
           {game.android_friendly && (
             <Icon tip="Android supported">
               <SiAndroid className="h-4 w-4" />
+            </Icon>
+          )}
+
+          {/* Self-hosted */}
+          {game.fullscreen && (
+            <Icon tip="Fullscreen">
+              <Maximize className="h-4 w-4" />
             </Icon>
           )}
 
