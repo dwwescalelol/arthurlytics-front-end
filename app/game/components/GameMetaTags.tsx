@@ -38,7 +38,7 @@ export function GameMetaTags({ game }: { game: Game }) {
   };
 
   return (
-    <Card className="p-1 w-fit min-w-0 max-w-[500px]">
+    <Card className="p-1 w-fit min-w-0 max-w-125">
       <div className="flex items-center gap-1 ">
         {canLeft && (
           <div className="opacity-">
@@ -73,7 +73,7 @@ export function GameMetaTags({ game }: { game: Game }) {
           <button
             onClick={() => move("right")}
             className="h-6 w-6 flex items-center justify-center
-                       [mask-image:linear-gradient(to_left,transparent,black_40%)]"
+                       mask-[linear-gradient(to_left,transparent,black_40%)]"
           >
             <ChevronRight className="h-4 w-4" />
           </button>
