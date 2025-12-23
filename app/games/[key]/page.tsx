@@ -6,6 +6,7 @@ import { GameMeta } from "../../game/components/GameMeta";
 import { GameDescription } from "../../game/components/GameDescription";
 import { PageFadeIn } from "@/components/page-fade-in";
 import { cloudClient } from "@/lib/clients/cloud";
+import { SetDocumentTitle } from "@/components/set-document-title";
 
 export default async function Page({
   params,
@@ -23,9 +24,11 @@ export default async function Page({
   const id = key.slice(dashIndex + 1);
 
   const game = await cloudClient.getGame(site, id);
-  console.log(game);
+
   return (
     <PageFadeIn>
+      <SetDocumentTitle title={`${game.name} · ${site.toUpperCase()}`} />
+
       <div className="space-y-6">
         <GameMeta game={game} />
 
