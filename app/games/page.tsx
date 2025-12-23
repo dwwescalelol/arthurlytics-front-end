@@ -4,18 +4,24 @@ import { cloudClient } from "@/lib/clients/cloud";
 export default async function Page({
   searchParams,
 }: {
-  searchParams: {
+  searchParams: Promise<{
     page?: string;
     sort?: string;
     order?: string;
     search?: string;
-  };
+  }>;
 }) {
-  const page = searchParams.page ?? "1";
-  const sort = searchParams.sort ?? "";
-  const order = searchParams.order ?? "";
-  const search = searchParams.search ?? "";
+  const {
+    page: pageParam,
+    sort: sortParam,
+    order: orderParam,
+    search: searchParam,
+  } = await searchParams;
 
+  const page = pageParam ?? "1";
+  const sort = sortParam ?? "";
+  const order = orderParam ?? "";
+  const search = searchParam ?? "";
   const result = await cloudClient.getAllGames({
     page,
     sort,

@@ -22,7 +22,7 @@ export function TableSearch() {
     }, 300);
 
     return () => clearTimeout(id);
-  }, [value, router, params]);
+  }, [value, router]);
 
   return (
     <Input

@@ -40,19 +40,23 @@ export function GameDataTable({
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [sites, setSites] = useState<string[]>(["msn", "poki", "crazy"]);
 
+  const queryString = params.toString();
+
   useEffect(() => {
-    const page = params.get("page") ?? "1";
-    const sort = params.get("sort") ?? "";
-    const order = params.get("order") ?? "";
-    const search = params.get("search") ?? "";
-
-    bffClient.getAllGames({ page, sort, order, search }).then((res) => {
-      setData(res.data);
-      setPage(res.meta.page);
-      setTotalPages(res.meta.totalPages);
-    });
-  }, [params]);
-
+    bffClient
+      .getAllGames({
+        page: params.get("page") ?? "1",
+        sort: params.get("sort") ?? "",
+        order: params.get("order") ?? "",
+        search: params.get("search") ?? "",
+      })
+      .then((res) => {
+        setData(res.data);
+        setPage(res.meta.page);
+        setTotalPages(res.meta.totalPages);
+      });
+  }, [queryString]);
+  console.log(queryString);
   const cols = useMemo(() => columns(timeframe), [timeframe]);
 
   const table = useReactTable({
