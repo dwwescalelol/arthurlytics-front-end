@@ -32,12 +32,11 @@ export default async function Page({
       <div className="space-y-6">
         <GameMeta game={game} />
 
-        <Card>
-          <div className="grid grid-cols-[auto_1fr_auto] gap-8 p-6">
-            <GameHeader game={game} />
-            <GameStats game={game} />
-          </div>
-        </Card>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <GameHeader game={game} />
+
+          <GameStats game={game} />
+        </div>
 
         <GameDescription game={game} />
         <GameVotesChart history={game.history} />
