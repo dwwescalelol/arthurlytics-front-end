@@ -47,9 +47,16 @@ type HistoryItem = {
 };
 
 export function GameVotesChart({ history }: { history: HistoryItem[] }) {
+  // 🔒 hydration guard — hooks MUST come first
+  const [mounted, setMounted] = React.useState(false);
+
   const [timeRange, setTimeRange] = React.useState<
     "7d" | "30d" | "90d" | "all"
   >("30d");
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const sorted = React.useMemo(
     () => [...history].sort((a, b) => a.timestamp - b.timestamp),
@@ -81,6 +88,9 @@ export function GameVotesChart({ history }: { history: HistoryItem[] }) {
 
     return chartData.filter((item) => new Date(item.date) >= start);
   }, [chartData, timeRange]);
+
+  // 🔒 guard AFTER hooks
+  if (!mounted) return null;
 
   return (
     <Card className="pt-0">
