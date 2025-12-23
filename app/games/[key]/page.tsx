@@ -5,6 +5,7 @@ import { GameStats } from "../../game/components/GameStats";
 import { GameMeta } from "../../game/components/GameMeta";
 import { GameDescription } from "../../game/components/GameDescription";
 import { PageFadeIn } from "@/components/page-fade-in";
+import { getGame } from "@/lib/games";
 
 export default async function Page({
   params,
@@ -21,24 +22,12 @@ export default async function Page({
   const site = key.slice(0, dashIndex);
   const id = key.slice(dashIndex + 1);
 
-  const res = await fetch(
-    `https://by9omosqo0.execute-api.eu-west-2.amazonaws.com/prod/gamehistory?site=${site}&id=${id}`,
-    { next: { revalidate: 60 } }
-  );
-
-  if (!res.ok) {
-    throw new Error("API fetch failed");
-  }
-
-  const game = await res.json();
-
+  const game = await getGame(site, id);
   return (
     <PageFadeIn>
       <div className="space-y-6">
-        {/* META CARD */}
         <GameMeta game={game} />
 
-        {/* MAIN INFO CARD */}
         <Card>
           <div className="grid grid-cols-[auto_1fr_auto] gap-8 p-6">
             <GameHeader game={game} />

@@ -7,7 +7,7 @@ import {
   getFilteredRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 
 import { GameStats } from "@/types/game-stats";
 import { columns } from "./game-columns";
@@ -15,47 +15,32 @@ import { GameTableToolbar } from "./game-table-toolbar";
 import { GameTable } from "./game-table";
 import { GameTablePagination } from "./game-table-pagination";
 
-const API_URL =
-  "https://by9omosqo0.execute-api.eu-west-2.amazonaws.com/prod/allgames";
-
-type GamesResponse = {
-  data: GameStats[];
-  meta: {
-    page: number;
-    totalPages: number;
-  };
+type Props = {
+  initialData: GameStats[];
+  initialPage: number;
+  initialTotalPages: number;
+  initialSort: string;
 };
 
-export function GameDataTable() {
+export function GameDataTable({
+  initialData,
+  initialPage,
+  initialTotalPages,
+  initialSort,
+}: Props) {
   const [timeframe, setTimeframe] = useState<"daily" | "weekly" | "monthly">(
     "daily"
   );
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
-  const [sorting, setSorting] = useState<SortingState>([]);
+  const [sorting, setSorting] = useState<SortingState>(
+    initialSort ? [{ id: initialSort, desc: false }] : []
+  );
   const [sites, setSites] = useState<string[]>(["msn", "poki", "crazy"]);
 
-  const [page, setPage] = useState(1);
-  const [data, setData] = useState<GameStats[]>([]);
-  const [totalPages, setTotalPages] = useState(1);
-  const [loading, setLoading] = useState(false);
+  const data = initialData;
+  const totalPages = initialTotalPages;
 
   const cols = useMemo(() => columns(timeframe), [timeframe]);
-
-  useEffect(() => {
-    setLoading(true);
-
-    const url = new URL(API_URL);
-    url.searchParams.set("page", String(page));
-    if (sorting[0]?.id) url.searchParams.set("sort", sorting[0].id);
-
-    fetch(url.toString())
-      .then((r) => r.json())
-      .then((json: GamesResponse) => {
-        setData(json.data);
-        setTotalPages(json.meta.totalPages);
-      })
-      .finally(() => setLoading(false));
-  }, [page, sorting]);
 
   const table = useReactTable({
     data,
@@ -68,10 +53,6 @@ export function GameDataTable() {
     manualSorting: true,
   });
 
-  useEffect(() => {
-    table.getColumn("site_id")?.setFilterValue(sites);
-  }, [sites, table]);
-
   return (
     <div className="space-y-4">
       <GameTableToolbar
@@ -81,13 +62,9 @@ export function GameDataTable() {
         setSites={setSites}
       />
 
-      <GameTable table={table} loading={loading} />
+      <GameTable table={table} loading={false} />
 
-      <GameTablePagination
-        page={page}
-        totalPages={totalPages}
-        setPage={setPage}
-      />
+      <GameTablePagination page={initialPage} totalPages={totalPages} />
     </div>
   );
 }

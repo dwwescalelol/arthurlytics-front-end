@@ -1,5 +1,6 @@
 import { ColumnDef, FilterFn } from "@tanstack/react-table";
 import { GameStats } from "@/types/game-stats";
+import { useRouter } from "next/navigation";
 import { ExternalLink, ArrowUp, ArrowDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -81,9 +82,14 @@ export const columns = (
     header: "Game",
     cell: ({ row }) => {
       const game = row.original;
+      const href = `/games/${game.site_id}-${game.game_id}`;
+      const router = useRouter();
+
       return (
         <Link
-          href={`/games/${game.site_id}-${game.game_id}`}
+          href={href}
+          prefetch={false}
+          onMouseEnter={() => router.prefetch(href)}
           className="text-primary underline-offset-4 hover:underline"
         >
           {game.name}
