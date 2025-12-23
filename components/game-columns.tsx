@@ -1,9 +1,9 @@
 import { ColumnDef, FilterFn } from "@tanstack/react-table";
-import { GameStats } from "@/types/game-stats";
 import { useRouter } from "next/navigation";
 import { ExternalLink, ArrowUp, ArrowDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { GameStats } from "@/types/games.types";
 
 const siteFilterFn: FilterFn<GameStats> = (row, columnId, filterValue) => {
   if (!Array.isArray(filterValue) || filterValue.length === 0) return true;

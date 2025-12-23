@@ -1,9 +1,9 @@
 "use client";
 
 import { Card } from "@/components/ui/card";
+import { Game } from "@/types/games.types";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useLayoutEffect, useRef, useState } from "react";
-import { Game } from "@/types/game";
 
 const WIDTH = 500;
 const STEP = 350;

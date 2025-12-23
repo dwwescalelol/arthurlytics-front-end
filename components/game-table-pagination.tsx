@@ -44,7 +44,10 @@ export function GameTablePagination({
     <Pagination>
       <PaginationContent>
         <PaginationItem>
-          <PaginationPrevious onClick={() => goToPage(Math.max(1, page - 1))} />
+          <PaginationPrevious
+            className="cursor-pointer"
+            onClick={() => goToPage(Math.max(1, page - 1))}
+          />
         </PaginationItem>
 
         {pages.map((p, i) => (
@@ -52,7 +55,11 @@ export function GameTablePagination({
             {p === "..." ? (
               <PaginationEllipsis />
             ) : (
-              <PaginationLink isActive={p === page} onClick={() => goToPage(p)}>
+              <PaginationLink
+                className="cursor-pointer"
+                isActive={p === page}
+                onClick={() => goToPage(p)}
+              >
                 {p}
               </PaginationLink>
             )}
@@ -61,6 +68,7 @@ export function GameTablePagination({
 
         <PaginationItem>
           <PaginationNext
+            className="cursor-pointer"
             onClick={() => goToPage(Math.min(totalPages, page + 1))}
           />
         </PaginationItem>

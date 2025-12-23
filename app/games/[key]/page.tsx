@@ -5,7 +5,7 @@ import { GameStats } from "../../game/components/GameStats";
 import { GameMeta } from "../../game/components/GameMeta";
 import { GameDescription } from "../../game/components/GameDescription";
 import { PageFadeIn } from "@/components/page-fade-in";
-import { getGame } from "@/lib/games";
+import { cloudClient } from "@/lib/clients/cloud";
 
 export default async function Page({
   params,
@@ -22,7 +22,8 @@ export default async function Page({
   const site = key.slice(0, dashIndex);
   const id = key.slice(dashIndex + 1);
 
-  const game = await getGame(site, id);
+  const game = await cloudClient.getGame(site, id);
+  console.log(game);
   return (
     <PageFadeIn>
       <div className="space-y-6">

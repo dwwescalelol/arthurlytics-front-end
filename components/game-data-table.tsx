@@ -2,18 +2,19 @@
 
 import {
   ColumnFiltersState,
-  SortingState,
   getCoreRowModel,
   getFilteredRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
 
-import { GameStats } from "@/types/game-stats";
 import { columns } from "./game-columns";
 import { GameTableToolbar } from "./game-table-toolbar";
 import { GameTable } from "./game-table";
 import { GameTablePagination } from "./game-table-pagination";
+import { bffClient } from "@/lib/clients/bff";
+import { GameStats } from "@/types/games.types";
 
 type Props = {
   initialData: GameStats[];
@@ -26,31 +27,43 @@ export function GameDataTable({
   initialData,
   initialPage,
   initialTotalPages,
-  initialSort,
 }: Props) {
+  const params = useSearchParams();
+
+  const [data, setData] = useState(initialData);
+  const [page, setPage] = useState(initialPage);
+  const [totalPages, setTotalPages] = useState(initialTotalPages);
+
   const [timeframe, setTimeframe] = useState<"daily" | "weekly" | "monthly">(
     "daily"
   );
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
-  const [sorting, setSorting] = useState<SortingState>(
-    initialSort ? [{ id: initialSort, desc: false }] : []
-  );
   const [sites, setSites] = useState<string[]>(["msn", "poki", "crazy"]);
 
-  const data = initialData;
-  const totalPages = initialTotalPages;
+  useEffect(() => {
+    const page = params.get("page") ?? "1";
+    const sort = params.get("sort") ?? "";
+    const order = params.get("order") ?? "";
+    const search = params.get("search") ?? "";
+
+    bffClient.getAllGames({ page, sort, order, search }).then((res) => {
+      setData(res.data);
+      setPage(res.meta.page);
+      setTotalPages(res.meta.totalPages);
+    });
+  }, [params]);
 
   const cols = useMemo(() => columns(timeframe), [timeframe]);
 
   const table = useReactTable({
     data,
     columns: cols,
-    state: { columnFilters, sorting },
+    state: {
+      columnFilters,
+    },
     onColumnFiltersChange: setColumnFilters,
-    onSortingChange: setSorting,
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
-    manualSorting: true,
   });
 
   return (
@@ -64,7 +77,7 @@ export function GameDataTable({
 
       <GameTable table={table} loading={false} />
 
-      <GameTablePagination page={initialPage} totalPages={totalPages} />
+      <GameTablePagination page={page} totalPages={totalPages} />
     </div>
   );
 }
