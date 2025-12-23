@@ -7,7 +7,6 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { Game } from "@/types/game";
 import {
   SiApple,
   SiGoogleplay,
@@ -16,6 +15,7 @@ import {
   SiSteam,
 } from "react-icons/si";
 import { Link } from "lucide-react";
+import { Game } from "@/types/games.types";
 
 const linkMap: Record<string, { icon: React.ElementType; label: string }> = {
   apple_store: { icon: SiApple, label: "App Store" },

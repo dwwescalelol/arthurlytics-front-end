@@ -74,7 +74,7 @@ export function GameHeader({ game }: { game: any }) {
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Badge className="w-fit cursor-default">
-                      {game.developer_name}
+                      {game.developer_name || "Unknown Dev"}
                     </Badge>
                   </TooltipTrigger>
                   <TooltipContent side="bottom">

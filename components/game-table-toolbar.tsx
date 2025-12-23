@@ -5,11 +5,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Checkbox } from "@/components/ui/checkbox";
+import { SiteFilterBadges } from "@/components/site-filter-badges";
+import { TableSearch } from "@/components/table-search";
 
 type Props = {
   timeframe: "daily" | "weekly" | "monthly";
-  setTimeframe: (v: any) => void;
+  setTimeframe: (v: "daily" | "weekly" | "monthly") => void;
   sites: string[];
   setSites: React.Dispatch<React.SetStateAction<string[]>>;
 };
@@ -35,27 +36,14 @@ export function GameTableToolbar({
 
       <div className="h-6 w-px bg-border" />
 
-      <div className="flex items-center gap-3 rounded-md border px-3 py-2">
-        <span className="text-xs font-medium uppercase text-muted-foreground">
-          Sites
-        </span>
+      <SiteFilterBadges
+        value={sites}
+        onChange={setSites}
+        options={["poki", "msn", "crazy"]}
+      />
 
-        {["poki", "msn", "crazy"].map((site) => (
-          <label key={site} className="flex items-center gap-2 text-sm">
-            <Checkbox
-              checked={sites.includes(site)}
-              onCheckedChange={(checked) => {
-                setSites((prev) => {
-                  const next = checked
-                    ? [...prev, site]
-                    : prev.filter((s) => s !== site);
-                  return next.length === 0 ? prev : next;
-                });
-              }}
-            />
-            {site}
-          </label>
-        ))}
+      <div className="ml-auto">
+        <TableSearch />
       </div>
     </div>
   );

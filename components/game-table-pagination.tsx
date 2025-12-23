@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Pagination,
   PaginationContent,
@@ -7,6 +9,7 @@ import {
   PaginationPrevious,
   PaginationEllipsis,
 } from "@/components/ui/pagination";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const getPages = (page: number, total: number) => {
   const pages: (number | "...")[] = [];
@@ -23,19 +26,28 @@ const getPages = (page: number, total: number) => {
 export function GameTablePagination({
   page,
   totalPages,
-  setPage,
 }: {
   page: number;
   totalPages: number;
-  setPage: (p: number) => void;
 }) {
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const pages = getPages(page, totalPages);
+
+  const goToPage = (p: number) => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("page", String(p));
+    router.push(`/games?${params.toString()}`);
+  };
 
   return (
     <Pagination>
       <PaginationContent>
         <PaginationItem>
-          <PaginationPrevious onClick={() => setPage(Math.max(1, page - 1))} />
+          <PaginationPrevious
+            className="cursor-pointer"
+            onClick={() => goToPage(Math.max(1, page - 1))}
+          />
         </PaginationItem>
 
         {pages.map((p, i) => (
@@ -43,7 +55,11 @@ export function GameTablePagination({
             {p === "..." ? (
               <PaginationEllipsis />
             ) : (
-              <PaginationLink isActive={p === page} onClick={() => setPage(p)}>
+              <PaginationLink
+                className="cursor-pointer"
+                isActive={p === page}
+                onClick={() => goToPage(p)}
+              >
                 {p}
               </PaginationLink>
             )}
@@ -52,7 +68,8 @@ export function GameTablePagination({
 
         <PaginationItem>
           <PaginationNext
-            onClick={() => setPage(Math.min(totalPages, page + 1))}
+            className="cursor-pointer"
+            onClick={() => goToPage(Math.min(totalPages, page + 1))}
           />
         </PaginationItem>
       </PaginationContent>

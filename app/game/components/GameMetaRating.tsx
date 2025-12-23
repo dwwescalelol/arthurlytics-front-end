@@ -7,7 +7,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { Game } from "@/types/game";
+import { Game } from "@/types/games.types";
 
 const ratingInfo: Record<string, string> = {
   E: "Everyone",
