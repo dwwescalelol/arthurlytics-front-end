@@ -36,12 +36,14 @@ export const columns = (
     header: "Site Rank",
     cell: ({ row }) => {
       const rank = row.original.site_rank;
-      const delta =
+      const d =
         timeframe === "daily"
           ? row.original.daily_delta_site_rank
           : timeframe === "weekly"
           ? row.original.weekly_delta_site_rank
           : row.original.monthly_delta_site_rank;
+
+      const delta = d ? d * -1 : d;
 
       return (
         <div className="flex items-center">
@@ -56,12 +58,14 @@ export const columns = (
     header: "Global Rank",
     cell: ({ row }) => {
       const rank = row.original.global_rank;
-      const delta =
+      const d =
         timeframe === "daily"
           ? row.original.daily_delta_global_rank
           : timeframe === "weekly"
           ? row.original.weekly_delta_global_rank
           : row.original.monthly_delta_global_rank;
+
+      const delta = d ? d * -1 : d;
 
       return (
         <div className="flex items-center">
