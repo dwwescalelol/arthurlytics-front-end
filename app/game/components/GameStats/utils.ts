@@ -53,5 +53,7 @@ export function computeStats(history: VoteSnapshot[]) {
     monthlyVotes,
     deltaDailyVotes,
     deltaDailyVotesPercent,
+    siteRank,
+    globalRank,
   };
 }
