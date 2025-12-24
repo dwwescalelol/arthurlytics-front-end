@@ -1,12 +1,12 @@
 import { Card } from "@/components/ui/card";
 import { GameVotesChart } from "@/components/game-votes-chart";
 import { GameHeader } from "../../game/components/GameHeader";
-import { GameStats } from "../../game/components/GameStats";
 import { GameMeta } from "../../game/components/GameMeta";
 import { GameDescription } from "../../game/components/GameDescription";
 import { PageFadeIn } from "@/components/page-fade-in";
 import { cloudClient } from "@/lib/clients/cloud";
 import { SetDocumentTitle } from "@/components/set-document-title";
+import { GameStats } from "../../game/components/GameStats/index";
 
 export default async function Page({
   params,
@@ -32,12 +32,11 @@ export default async function Page({
       <div className="space-y-6">
         <GameMeta game={game} />
 
-        <Card>
-          <div className="grid grid-cols-[auto_1fr_auto] gap-8 p-6">
-            <GameHeader game={game} />
-            <GameStats game={game} />
-          </div>
-        </Card>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <GameHeader game={game} />
+
+          <GameStats game={game} />
+        </div>
 
         <GameDescription game={game} />
         <GameVotesChart history={game.history} />
