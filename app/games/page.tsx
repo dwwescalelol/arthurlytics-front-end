@@ -1,5 +1,5 @@
 import { GameDataTable } from "@/components/game-data-table";
-import { cloudClient } from "@/lib/clients/cloud";
+import { client } from "@/lib/clients";
 
 export default async function Page({
   searchParams,
@@ -22,7 +22,7 @@ export default async function Page({
   const sort = sortParam ?? "";
   const order = orderParam ?? "";
   const search = searchParam ?? "";
-  const result = await cloudClient.getAllGames({
+  const result = await client.getAllGames({
     page,
     sort,
     order,
