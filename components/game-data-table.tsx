@@ -10,7 +10,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
 import { columns } from "./game-columns";
-import { GameTableToolbar } from "./game-table-toolbar";
+import { GameTableToolbar, TimeframeOption, TIMEFRAME_BASE } from "./game-table-toolbar";
 import { GameTable } from "./game-table";
 import { GameTablePagination } from "./game-table-pagination";
 import { bffClient } from "@/lib/clients/bff";
@@ -34,9 +34,7 @@ export function GameDataTable({
   const [page, setPage] = useState(initialPage);
   const [totalPages, setTotalPages] = useState(initialTotalPages);
 
-  const [timeframe, setTimeframe] = useState<"daily" | "weekly" | "monthly">(
-    "daily"
-  );
+  const [timeframe, setTimeframe] = useState<TimeframeOption>("7d");
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [sites, setSites] = useState<string[]>(["msn", "poki", "crazy"]);
 
@@ -56,8 +54,8 @@ export function GameDataTable({
         setTotalPages(res.meta.totalPages);
       });
   }, [queryString]);
-  console.log(queryString);
-  const cols = useMemo(() => columns(timeframe), [timeframe]);
+
+  const cols = useMemo(() => columns(TIMEFRAME_BASE[timeframe]), [timeframe]);
 
   const table = useReactTable({
     data,

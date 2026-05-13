@@ -30,27 +30,31 @@ export function RankInline({
   const improving = hasDelta && delta < 0;
 
   return (
-    <div className="flex items-center gap-1">
-      <span>{label}</span>
-
-      <span className={`font-medium ${valueClassName ?? ""}`}>
-        {formatValue(value)}
+    <div className="flex flex-col items-center gap-0.5">
+      <span className="text-[0.6rem] font-semibold uppercase tracking-wider text-muted-foreground">
+        {label}
       </span>
 
-      {hasDelta && (
-        <span
-          className={`flex items-center gap-0.5 ${
-            improving ? "text-green-600" : "text-red-600"
-          }`}
-        >
-          {improving ? (
-            <ChevronUp className="h-3 w-3" />
-          ) : (
-            <ChevronDown className="h-3 w-3" />
-          )}
-          {Math.abs(delta)}
+      <div className="flex items-center gap-0.5">
+        <span className={`text-sm font-semibold tabular-nums ${valueClassName ?? ""}`}>
+          {formatValue(value)}
         </span>
-      )}
+
+        {hasDelta && (
+          <span
+            className={`flex items-center gap-0.5 text-[0.65rem] ${
+              improving ? "text-green-600" : "text-red-600"
+            }`}
+          >
+            {improving ? (
+              <ChevronUp className="h-3 w-3" />
+            ) : (
+              <ChevronDown className="h-3 w-3" />
+            )}
+            {Math.abs(delta)}
+          </span>
+        )}
+      </div>
     </div>
   );
 }

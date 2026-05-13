@@ -32,14 +32,14 @@ export default async function Page({
       <div className="space-y-6">
         <GameMeta game={game} />
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-[5fr_7fr] gap-6 items-stretch">
           <GameHeader game={game} />
 
           <GameStats game={game} />
         </div>
 
-        <GameDescription game={game} />
         <GameVotesChart history={game.history} />
+        <GameDescription game={game} />
       </div>
     </PageFadeIn>
   );

@@ -2,10 +2,14 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollWithChevron } from "@/components/ScrollWithChevron";
 
 export function GameDescription({ game }: { game: any }) {
+  if (!game.description) return null;
+
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Description</CardTitle>
+        <CardTitle className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+          Description
+        </CardTitle>
       </CardHeader>
 
       <div className="pr-4">

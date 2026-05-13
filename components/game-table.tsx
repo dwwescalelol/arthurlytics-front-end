@@ -9,8 +9,9 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { ArrowUp, ArrowDown } from "lucide-react";
+import { ChevronsUpDown, ChevronUp, ChevronDown } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { cn } from "@/lib/utils";
 
 type Props = {
   table: TableType<any>;
@@ -28,8 +29,7 @@ export function GameTable({ table, loading }: Props) {
     const params = new URLSearchParams(searchParams.toString());
 
     if (currentSort === columnId) {
-      const nextOrder = currentOrder === "asc" ? "desc" : "asc";
-      params.set("order", nextOrder);
+      params.set("order", currentOrder === "asc" ? "desc" : "asc");
     } else {
       params.delete("order");
     }
@@ -41,26 +41,43 @@ export function GameTable({ table, loading }: Props) {
   };
 
   return (
-    <div className="rounded-md border">
+    <div className="rounded-lg border border-border/60 overflow-hidden">
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((hg) => (
-            <TableRow key={hg.id}>
+            <TableRow key={hg.id} className="hover:bg-transparent border-border/60">
               {hg.headers.map((h) => {
+                const sortable = h.column.getCanSort();
                 const isActive = currentSort === h.column.id;
                 const isAsc = isActive && currentOrder === "asc";
                 const isDesc = isActive && currentOrder === "desc";
 
+                const alignRight = (h.column.columnDef.meta as any)?.align === "right";
+
                 return (
                   <TableHead
                     key={h.id}
-                    onClick={() => h.column.getCanSort() && onSort(h.column.id)}
-                    className={h.column.getCanSort() ? "cursor-pointer" : ""}
+                    onClick={() => sortable && onSort(h.column.id)}
+                    className={cn(
+                      "h-9 px-4 text-[11px] font-medium uppercase tracking-wide select-none",
+                      sortable && "cursor-pointer",
+                      isActive ? "text-foreground" : "text-muted-foreground"
+                    )}
                   >
-                    <span className="inline-flex items-center gap-1">
+                    <span className={cn(
+                      "inline-flex items-center gap-1",
+                      alignRight && "flex-row-reverse w-full"
+                    )}>
                       {flexRender(h.column.columnDef.header, h.getContext())}
-                      {isAsc && <ArrowUp className="h-3 w-3" />}
-                      {isDesc && <ArrowDown className="h-3 w-3" />}
+                      {sortable && (
+                        isAsc ? (
+                          <ChevronUp className="h-3 w-3" />
+                        ) : isDesc ? (
+                          <ChevronDown className="h-3 w-3" />
+                        ) : (
+                          <ChevronsUpDown className="h-3 w-3 opacity-30" />
+                        )
+                      )}
                     </span>
                   </TableHead>
                 );
@@ -74,16 +91,19 @@ export function GameTable({ table, loading }: Props) {
             <TableRow>
               <TableCell
                 colSpan={table.getAllColumns().length}
-                className="h-24 text-center"
+                className="h-24 text-center text-sm text-muted-foreground"
               >
                 Loading…
               </TableCell>
             </TableRow>
           ) : table.getRowModel().rows.length ? (
             table.getRowModel().rows.map((row) => (
-              <TableRow key={row.id}>
+              <TableRow
+                key={row.id}
+                className="border-border/40 text-sm"
+              >
                 {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id}>
+                  <TableCell key={cell.id} className="px-4 py-2.5">
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
                 ))}
@@ -93,7 +113,7 @@ export function GameTable({ table, loading }: Props) {
             <TableRow>
               <TableCell
                 colSpan={table.getAllColumns().length}
-                className="h-24 text-center"
+                className="h-24 text-center text-sm text-muted-foreground"
               >
                 No results.
               </TableCell>

@@ -1,16 +1,32 @@
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { SiteFilterBadges } from "@/components/site-filter-badges";
 import { TableSearch } from "@/components/table-search";
+import { cn } from "@/lib/utils";
+
+const TIMEFRAME_OPTIONS = [
+  { value: "today", label: "Today" },
+  { value: "yesterday", label: "Yesterday" },
+  { value: "7d", label: "7D" },
+  { value: "30d", label: "30D" },
+  { value: "3m", label: "3M" },
+  { value: "6m", label: "6M" },
+  { value: "12m", label: "12M" },
+] as const;
+
+export type TimeframeOption = (typeof TIMEFRAME_OPTIONS)[number]["value"];
+
+export const TIMEFRAME_BASE: Record<TimeframeOption, "daily" | "weekly" | "monthly"> = {
+  today: "daily",
+  yesterday: "daily",
+  "7d": "weekly",
+  "30d": "monthly",
+  "3m": "monthly",
+  "6m": "monthly",
+  "12m": "monthly",
+};
 
 type Props = {
-  timeframe: "daily" | "weekly" | "monthly";
-  setTimeframe: (v: "daily" | "weekly" | "monthly") => void;
+  timeframe: TimeframeOption;
+  setTimeframe: (v: TimeframeOption) => void;
   sites: string[];
   setSites: React.Dispatch<React.SetStateAction<string[]>>;
 };
@@ -22,19 +38,27 @@ export function GameTableToolbar({
   setSites,
 }: Props) {
   return (
-    <div className="flex items-center gap-4">
-      <Select value={timeframe} onValueChange={setTimeframe}>
-        <SelectTrigger className="w-32">
-          <SelectValue />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectItem value="daily">Daily</SelectItem>
-          <SelectItem value="weekly">Weekly</SelectItem>
-          <SelectItem value="monthly">Monthly</SelectItem>
-        </SelectContent>
-      </Select>
+    <div className="flex items-center gap-3">
 
-      <div className="h-6 w-px bg-border" />
+      {/* Mixpanel-style timeframe selector */}
+      <div className="flex items-center rounded-md border border-border/60 bg-muted/40 p-0.5 gap-0.5">
+        {TIMEFRAME_OPTIONS.map(({ value, label }) => (
+          <button
+            key={value}
+            onClick={() => setTimeframe(value)}
+            className={cn(
+              "rounded px-2.5 py-1 text-xs font-medium transition-all",
+              timeframe === value
+                ? "bg-background text-foreground shadow-sm"
+                : "text-muted-foreground hover:text-foreground"
+            )}
+          >
+            {label}
+          </button>
+        ))}
+      </div>
+
+      <div className="h-4 w-px bg-border" />
 
       <SiteFilterBadges
         value={sites}
