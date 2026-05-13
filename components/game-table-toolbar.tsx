@@ -4,24 +4,16 @@ import { cn } from "@/lib/utils";
 
 const TIMEFRAME_OPTIONS = [
   { value: "today", label: "Today" },
-  { value: "yesterday", label: "Yesterday" },
   { value: "7d", label: "7D" },
   { value: "30d", label: "30D" },
-  { value: "3m", label: "3M" },
-  { value: "6m", label: "6M" },
-  { value: "12m", label: "12M" },
 ] as const;
 
 export type TimeframeOption = (typeof TIMEFRAME_OPTIONS)[number]["value"];
 
 export const TIMEFRAME_BASE: Record<TimeframeOption, "daily" | "weekly" | "monthly"> = {
   today: "daily",
-  yesterday: "daily",
   "7d": "weekly",
   "30d": "monthly",
-  "3m": "monthly",
-  "6m": "monthly",
-  "12m": "monthly",
 };
 
 type Props = {
