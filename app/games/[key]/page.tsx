@@ -4,7 +4,7 @@ import { GameHeader } from "../../game/components/GameHeader";
 import { GameMeta } from "../../game/components/GameMeta";
 import { GameDescription } from "../../game/components/GameDescription";
 import { PageFadeIn } from "@/components/page-fade-in";
-import { cloudClient } from "@/lib/clients/cloud";
+import { client } from "@/lib/clients";
 import { SetDocumentTitle } from "@/components/set-document-title";
 import { GameStats } from "../../game/components/GameStats/index";
 
@@ -23,7 +23,7 @@ export default async function Page({
   const site = key.slice(0, dashIndex);
   const id = key.slice(dashIndex + 1);
 
-  const game = await cloudClient.getGame(site, id);
+  const game = await client.getGame(site, id);
 
   return (
     <PageFadeIn>

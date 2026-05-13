@@ -1,4 +1,4 @@
-import { cloudClient } from "@/lib/clients/cloud";
+import { client } from "@/lib/clients";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
@@ -9,7 +9,7 @@ export async function GET(req: NextRequest) {
   const search = searchParams.get("search") ?? "";
   const sort = searchParams.get("sort") ?? "";
 
-  const data = await cloudClient.getAllGames({
+  const data = await client.getAllGames({
     page,
     sort,
     order,
