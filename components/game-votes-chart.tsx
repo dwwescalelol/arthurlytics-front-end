@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts";
+import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts";
 import {
   Card,
   CardContent,
@@ -9,11 +9,10 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
 
 import {
   ChartContainer,
-  ChartLegend,
-  ChartLegendContent,
   ChartTooltip,
   ChartTooltipContent,
   type ChartConfig,
@@ -30,13 +29,13 @@ import {
 /* ---------------- chart config ---------------- */
 
 const chartConfig = {
-  daily_new_totalvotes: {
-    label: "Daily Total Votes",
-    color: "var(--chart-1)",
-  },
   daily_new_upvotes: {
-    label: "Daily Up Votes",
+    label: "Up Votes",
     color: "var(--chart-2)",
+  },
+  daily_new_downvotes: {
+    label: "Down Votes",
+    color: "var(--chart-1)",
   },
 } satisfies ChartConfig;
 
@@ -65,12 +64,15 @@ export function GameVotesChart({ history }: { history: HistoryItem[] }) {
 
   const chartData = React.useMemo(
     () =>
-      sorted.map((h, i) => ({
-        date: new Date(h.timestamp * 1000).toISOString(),
-        daily_new_totalvotes:
-          i === 0 ? 0 : h.totalvotes - sorted[i - 1].totalvotes,
-        daily_new_upvotes: i === 0 ? 0 : h.upvotes - sorted[i - 1].upvotes,
-      })),
+      sorted.map((h, i) => {
+        const totalvotes = i === 0 ? 0 : h.totalvotes - sorted[i - 1].totalvotes;
+        const upvotes = i === 0 ? 0 : h.upvotes - sorted[i - 1].upvotes;
+        return {
+          date: new Date(h.timestamp * 1000).toISOString(),
+          daily_new_upvotes: upvotes,
+          daily_new_downvotes: totalvotes - upvotes,
+        };
+      }),
     [sorted]
   );
 
@@ -90,32 +92,61 @@ export function GameVotesChart({ history }: { history: HistoryItem[] }) {
   }, [chartData, timeRange]);
 
   // 🔒 guard AFTER hooks
-  if (!mounted) return null;
+  if (!mounted) return (
+    <Card className="pt-0">
+      <CardHeader className="flex items-center gap-2 space-y-0 border-b py-5 sm:flex-row">
+        <div className="grid flex-1 gap-1">
+          <Skeleton className="h-4 w-32" />
+          <Skeleton className="h-3 w-48" />
+        </div>
+        <Skeleton className="h-8 w-36" />
+      </CardHeader>
+      <CardContent className="px-2 pt-4 sm:px-6 sm:pt-6">
+        <Skeleton className="h-62.5 w-full" />
+      </CardContent>
+    </Card>
+  );
 
   return (
     <Card className="pt-0">
       <CardHeader className="flex items-center gap-2 space-y-0 border-b py-5 sm:flex-row">
         <div className="grid flex-1 gap-1">
-          <CardTitle>Votes – Daily Change</CardTitle>
+          <CardTitle className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+            Daily Vote Change
+          </CardTitle>
           <CardDescription>
-            Daily deltas for total votes and upvotes
+            Total votes and upvotes per day
           </CardDescription>
         </div>
 
-        <Select
-          value={timeRange}
-          onValueChange={(v) => setTimeRange(v as "all" | "7d" | "30d" | "90d")}
-        >
-          <SelectTrigger className="hidden w-40 sm:flex">
-            <SelectValue />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="7d">Last 7 days</SelectItem>
-            <SelectItem value="30d">Last 30 days</SelectItem>
-            <SelectItem value="90d">Last 90 days</SelectItem>
-            <SelectItem value="all">All time</SelectItem>
-          </SelectContent>
-        </Select>
+        <div className="flex items-center gap-4">
+          <div className="hidden sm:flex items-center gap-3 text-xs text-muted-foreground">
+            {Object.entries(chartConfig).map(([key, cfg]) => (
+              <span key={key} className="flex items-center gap-1.5">
+                <span
+                  className="h-2 w-2 rounded-full"
+                  style={{ backgroundColor: cfg.color }}
+                />
+                {cfg.label}
+              </span>
+            ))}
+          </div>
+
+          <Select
+            value={timeRange}
+            onValueChange={(v) => setTimeRange(v as "all" | "7d" | "30d" | "90d")}
+          >
+            <SelectTrigger className="hidden w-36 sm:flex">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="7d">Last 7 days</SelectItem>
+              <SelectItem value="30d">Last 30 days</SelectItem>
+              <SelectItem value="90d">Last 90 days</SelectItem>
+              <SelectItem value="all">All time</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
       </CardHeader>
 
       <CardContent className="px-2 pt-4 sm:px-6 sm:pt-6">
@@ -123,35 +154,7 @@ export function GameVotesChart({ history }: { history: HistoryItem[] }) {
           config={chartConfig}
           className="aspect-auto h-62.5 w-full"
         >
-          <AreaChart data={filteredData}>
-            <defs>
-              <linearGradient id="fillTotal" x1="0" y1="0" x2="0" y2="1">
-                <stop
-                  offset="0%"
-                  stopColor="var(--color-daily_new_totalvotes)"
-                  stopOpacity={0.9}
-                />
-                <stop
-                  offset="100%"
-                  stopColor="var(--color-daily_new_totalvotes)"
-                  stopOpacity={0.05}
-                />
-              </linearGradient>
-
-              <linearGradient id="fillUpvotes" x1="0" y1="0" x2="0" y2="1">
-                <stop
-                  offset="0%"
-                  stopColor="var(--color-daily_new_upvotes)"
-                  stopOpacity={0.9}
-                />
-                <stop
-                  offset="100%"
-                  stopColor="var(--color-daily_new_upvotes)"
-                  stopOpacity={0.05}
-                />
-              </linearGradient>
-            </defs>
-
+          <BarChart data={filteredData} barGap={2}>
             <CartesianGrid vertical={false} />
 
             <XAxis
@@ -159,6 +162,7 @@ export function GameVotesChart({ history }: { history: HistoryItem[] }) {
               tickLine={false}
               axisLine={false}
               tickMargin={8}
+              minTickGap={40}
               tickFormatter={(v) =>
                 new Date(v).toLocaleDateString("en-US", {
                   month: "short",
@@ -171,7 +175,12 @@ export function GameVotesChart({ history }: { history: HistoryItem[] }) {
               tickLine={false}
               axisLine={false}
               tickMargin={8}
-              tickFormatter={(v) => Intl.NumberFormat().format(v)}
+              tickFormatter={(v) =>
+                Intl.NumberFormat("en", {
+                  notation: "compact",
+                  maximumFractionDigits: 1,
+                }).format(v)
+              }
             />
 
             <ChartTooltip
@@ -188,22 +197,20 @@ export function GameVotesChart({ history }: { history: HistoryItem[] }) {
               }
             />
 
-            <Area
-              dataKey="daily_new_totalvotes"
-              type="natural"
-              fill="url(#fillTotal)"
-              stroke="var(--color-daily_new_totalvotes)"
-            />
-
-            <Area
+            <Bar
               dataKey="daily_new_upvotes"
-              type="natural"
-              fill="url(#fillUpvotes)"
-              stroke="var(--color-daily_new_upvotes)"
+              fill="var(--color-daily_new_upvotes)"
+              stackId="votes"
+              radius={[0, 0, 0, 0]}
             />
 
-            <ChartLegend content={<ChartLegendContent />} />
-          </AreaChart>
+            <Bar
+              dataKey="daily_new_downvotes"
+              fill="var(--color-daily_new_downvotes)"
+              stackId="votes"
+              radius={[3, 3, 0, 0]}
+            />
+          </BarChart>
         </ChartContainer>
       </CardContent>
     </Card>

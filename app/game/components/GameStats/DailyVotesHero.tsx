@@ -11,21 +11,25 @@ export function DailyVotesHero({
   const improving = hasDelta && deltaDailyVotes > 0;
 
   return (
-    <div className="flex w-1/2 items-center justify-center">
+    <div className="flex w-1/2 items-center justify-center border-r pr-6">
       <div className="text-left">
-        <div className="text-xs text-muted-foreground">Daily votes</div>
+        <div className="text-[0.65rem] font-semibold uppercase tracking-wider text-muted-foreground">
+          Daily votes
+        </div>
 
-        <div className="mt-1 flex items-end gap-2">
-          <div className="text-5xl font-semibold leading-none">
+        <div className="mt-2 flex items-end gap-2">
+          <div className="text-5xl font-bold leading-none tabular-nums">
             {dailyVotes === undefined
-              ? "Not enough data"
+              ? "–"
               : Intl.NumberFormat().format(dailyVotes)}
           </div>
 
           {hasDelta && (
             <span
-              className={`flex items-center text-xs ${
-                improving ? "text-green-600" : "text-red-600"
+              className={`mb-0.5 flex items-center gap-0.5 rounded-full px-2 py-0.5 text-[0.65rem] font-semibold ${
+                improving
+                  ? "bg-green-500/10 text-green-600"
+                  : "bg-red-500/10 text-red-600"
               }`}
             >
               {improving ? (

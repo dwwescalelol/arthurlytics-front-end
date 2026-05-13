@@ -1,5 +1,4 @@
 import React from "react";
-import { Card } from "@/components/ui/card";
 import {
   Tooltip,
   TooltipContent,
@@ -53,8 +52,7 @@ export function GameMetaCapabilities({ game }: { game: Game }) {
 
   return (
     <TooltipProvider>
-      <Card className="inline-flex w-fit p-2">
-        <div className="flex items-center gap-3 text-muted-foreground">
+      <div className="flex items-center gap-3 px-3 py-2 text-muted-foreground">
           {showPlatform ? (
             <>
               {game.mobile_friendly && (
@@ -117,8 +115,7 @@ export function GameMetaCapabilities({ game }: { game: Game }) {
               })()}
             </Icon>
           )}
-        </div>
-      </Card>
+      </div>
     </TooltipProvider>
   );
 }

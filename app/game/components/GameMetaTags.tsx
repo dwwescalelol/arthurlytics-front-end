@@ -1,8 +1,13 @@
 "use client";
 
-import { Card } from "@/components/ui/card";
 import { Game } from "@/types/games.types";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Tag } from "lucide-react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { useLayoutEffect, useRef, useState } from "react";
 
 const WIDTH = 500;
@@ -38,8 +43,17 @@ export function GameMetaTags({ game }: { game: Game }) {
   };
 
   return (
-    <Card className="p-1 w-fit min-w-0 max-w-125">
-      <div className="flex items-center gap-1 ">
+    <div className="flex items-center gap-1 min-w-0 max-w-125 px-2 py-2">
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Tag className="h-4 w-4 shrink-0 text-muted-foreground ml-1 cursor-default" />
+            </TooltipTrigger>
+            <TooltipContent side="bottom">
+              <span className="text-xs">Tags</span>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
         {canLeft && (
           <div className="opacity-">
             <button
@@ -61,8 +75,9 @@ export function GameMetaTags({ game }: { game: Game }) {
             {game.tags.map((tag) => (
               <span
                 key={tag}
-                className="shrink-0 rounded-md border px-2 py-0.5 text-xs"
+                className="shrink-0 rounded-md bg-muted/60 px-2 py-0.5 text-xs"
               >
+                <span className="text-muted-foreground">#</span>
                 {tag}
               </span>
             ))}
@@ -78,7 +93,6 @@ export function GameMetaTags({ game }: { game: Game }) {
             <ChevronRight className="h-4 w-4" />
           </button>
         )}
-      </div>
-    </Card>
+    </div>
   );
 }

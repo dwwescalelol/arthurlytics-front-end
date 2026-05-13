@@ -1,6 +1,5 @@
 "use client";
 
-import { Card } from "@/components/ui/card";
 import {
   Tooltip,
   TooltipContent,
@@ -23,21 +22,19 @@ export function GameMetaRating({ game }: { game: Game }) {
 
   return (
     <TooltipProvider>
-      <Card className="inline-flex w-fit p-1">
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <div className="flex h-6 min-w-6 items-center justify-center px-1 text-xs font-bold text-muted-foreground">
-              {rating}
-            </div>
-          </TooltipTrigger>
-          <TooltipContent side="bottom">
-            <div className="text-xs">
-              <div className="font-medium">ESRB Rating</div>
-              <div>{ratingInfo[rating] ?? "Rating information"}</div>
-            </div>
-          </TooltipContent>
-        </Tooltip>
-      </Card>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <div className="flex items-center px-3 py-2 text-xs font-bold text-muted-foreground cursor-default">
+            {rating}
+          </div>
+        </TooltipTrigger>
+        <TooltipContent side="bottom">
+          <div className="text-xs">
+            <div className="font-medium">ESRB Rating</div>
+            <div>{ratingInfo[rating] ?? "Rating information"}</div>
+          </div>
+        </TooltipContent>
+      </Tooltip>
     </TooltipProvider>
   );
 }

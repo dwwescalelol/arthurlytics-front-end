@@ -1,6 +1,5 @@
 "use client";
 
-import { Card } from "@/components/ui/card";
 import {
   Tooltip,
   TooltipContent,
@@ -37,8 +36,7 @@ export function GameMetaLinks({ game }: { game: Game }) {
 
   return (
     <TooltipProvider>
-      <Card className="inline-flex w-fit p-2">
-        <div className="flex items-center gap-3 text-muted-foreground">
+      <div className="flex items-center gap-3 px-3 py-2 text-muted-foreground">
           {entries.map(([key, url]) => {
             const Icon = linkMap[key].icon;
             return (
@@ -59,8 +57,7 @@ export function GameMetaLinks({ game }: { game: Game }) {
               </Tooltip>
             );
           })}
-        </div>
-      </Card>
+      </div>
     </TooltipProvider>
   );
 }

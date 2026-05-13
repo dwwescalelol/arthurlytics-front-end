@@ -3,7 +3,6 @@
 import { Card } from "@/components/ui/card";
 import { DailyVotesHero } from "./DailyVotesHero";
 import { StatTile } from "./StatTile";
-import { RankInline } from "./RankInLine";
 import { computeStats } from "./utils";
 
 export function GameStats({ game }: { game: any }) {
@@ -25,22 +24,21 @@ export function GameStats({ game }: { game: any }) {
 
   const currRatingStr = String(currRating.toFixed(1)) + "%";
   return (
-    <Card className="px-8 py-6 min-h-70 max-h-80 h-full overflow-hidden">
+    <Card className="px-8 py-6 h-full">
       <div className="flex h-full flex-col">
-        <div className="flex flex-1">
+        <div className="flex flex-1 items-center">
           <DailyVotesHero
             dailyVotes={dailyVotes}
             deltaDailyVotes={deltaDailyVotesPercent}
           />
 
-          {/*  */}
-          <div className="w-1/2 grid grid-cols-2 gap-x-6 gap-y-6 place-content-center">
+          <div className="w-1/2 grid grid-cols-2 gap-3 pl-6">
             <StatTile label="Monthly votes" value={monthlyVotes ?? "–"} />
+            <StatTile label="Weekly votes" value={weeklyVotes ?? "–"} />
             <StatTile
               label="Global rank"
               value={globalRank == null ? null : `#${globalRank}`}
             />
-            <StatTile label="Weekly votes" value={weeklyVotes ?? "–"} />
             <StatTile
               label="Site rank"
               value={siteRank == null ? null : `#${siteRank}`}
@@ -48,30 +46,41 @@ export function GameStats({ game }: { game: any }) {
           </div>
         </div>
 
-        <div className="mt-auto pt-3 flex justify-between text-xs text-muted-foreground">
-          <RankInline
-            label="Votes"
-            value={currTotal}
-            valueClassName="text-primary"
-          />
+        <div className="mt-6 flex items-center gap-2">
+          <span className="text-[0.6rem] font-semibold uppercase tracking-wider text-muted-foreground whitespace-nowrap">
+            All time
+          </span>
+          <div className="flex-1 border-t" />
+        </div>
 
-          <RankInline
-            label="Up Votes"
-            value={currUp}
-            valueClassName="text-green-600"
-          />
+        <div className="mt-3 flex items-center gap-6">
+          {/* VOTE SPLIT BAR */}
+          <div className="flex flex-col gap-1.5 flex-1">
+            <div className="flex justify-between text-[0.6rem] font-semibold uppercase tracking-wider">
+              <span className="text-green-600">
+                ↑ {Intl.NumberFormat("en", { notation: "compact" }).format(currUp)}
+              </span>
+              <span className="text-red-600">
+                ↓ {Intl.NumberFormat("en", { notation: "compact" }).format(currDown)}
+              </span>
+            </div>
+            <div className="h-1.5 rounded-full overflow-hidden flex bg-red-500/20">
+              <div
+                className="h-full bg-green-500 rounded-full"
+                style={{ width: `${currRating}%` }}
+              />
+            </div>
+          </div>
 
-          <RankInline
-            label="Down Votes"
-            value={currDown}
-            valueClassName="text-red-600"
-          />
-
-          <RankInline
-            label="Rating"
-            value={currRatingStr}
-            valueClassName="text-primary"
-          />
+          {/* RATING */}
+          <div className="flex flex-col items-center gap-0.5 shrink-0">
+            <span className="text-[0.6rem] font-semibold uppercase tracking-wider text-muted-foreground">
+              Rating
+            </span>
+            <span className="text-sm font-semibold tabular-nums text-primary">
+              {currRatingStr}
+            </span>
+          </div>
         </div>
       </div>
     </Card>
