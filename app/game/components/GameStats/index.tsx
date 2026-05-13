@@ -15,8 +15,6 @@ export function GameStats({ game }: { game: any }) {
     currDown,
     currRating,
     dailyVotes,
-    weeklyVotes,
-    monthlyVotes,
     deltaDailyVotesPercent,
     siteRank,
     globalRank,
@@ -33,8 +31,6 @@ export function GameStats({ game }: { game: any }) {
           />
 
           <div className="w-1/2 grid grid-cols-2 gap-3 pl-6">
-            <StatTile label="Monthly votes" value={monthlyVotes ?? "–"} />
-            <StatTile label="Weekly votes" value={weeklyVotes ?? "–"} />
             <StatTile
               label="Global rank"
               value={globalRank == null ? null : `#${globalRank}`}
@@ -43,6 +39,9 @@ export function GameStats({ game }: { game: any }) {
               label="Site rank"
               value={siteRank == null ? null : `#${siteRank}`}
             />
+            <div className="col-span-2">
+              <StatTile label="Total votes" value={currTotal ?? "–"} />
+            </div>
           </div>
         </div>
 
