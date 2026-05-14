@@ -111,14 +111,26 @@ export const columns = (
       const router = useRouter();
 
       return (
-        <Link
-          href={href}
-          prefetch={false}
-          onMouseEnter={() => router.prefetch(href)}
-          className="font-medium text-foreground underline-offset-4 hover:text-primary hover:underline transition-colors"
-        >
-          {game.name}
-        </Link>
+        <div className="flex items-center gap-2">
+          <Link
+            href={href}
+            prefetch={false}
+            onMouseEnter={() => router.prefetch(href)}
+            className="font-medium text-foreground underline-offset-4 hover:text-primary hover:underline transition-colors"
+          >
+            {game.name}
+          </Link>
+          {game.is_new && (
+            <span className="rounded px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
+              New
+            </span>
+          )}
+          {game.new_in_top250 && (
+            <span className="rounded px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide bg-orange-500/10 text-orange-500">
+              🔥 New 250
+            </span>
+          )}
+        </div>
       );
     },
     enableSorting: false,

@@ -21,6 +21,10 @@ type Props = {
   setTimeframe: (v: TimeframeOption) => void;
   sites: string[];
   setSites: React.Dispatch<React.SetStateAction<string[]>>;
+  showNewOnly: boolean;
+  setShowNewOnly: (v: boolean) => void;
+  showTop250Only: boolean;
+  setShowTop250Only: (v: boolean) => void;
 };
 
 export function GameTableToolbar({
@@ -28,11 +32,15 @@ export function GameTableToolbar({
   setTimeframe,
   sites,
   setSites,
+  showNewOnly,
+  setShowNewOnly,
+  showTop250Only,
+  setShowTop250Only,
 }: Props) {
   return (
     <div className="flex items-center gap-3">
 
-      {/* Mixpanel-style timeframe selector */}
+      {/* Timeframe selector */}
       <div className="flex items-center rounded-md border border-border/60 bg-muted/40 p-0.5 gap-0.5">
         {TIMEFRAME_OPTIONS.map(({ value, label }) => (
           <button
@@ -57,6 +65,30 @@ export function GameTableToolbar({
         onChange={setSites}
         options={["poki", "msn", "crazy"]}
       />
+
+      <button
+        onClick={() => setShowNewOnly(!showNewOnly)}
+        className={cn(
+          "rounded-md px-2.5 py-1 text-xs font-semibold uppercase tracking-wide transition-all",
+          showNewOnly
+            ? "bg-emerald-500/15 text-emerald-600 dark:text-emerald-400"
+            : "text-muted-foreground hover:text-foreground"
+        )}
+      >
+        New
+      </button>
+
+      <button
+        onClick={() => setShowTop250Only(!showTop250Only)}
+        className={cn(
+          "rounded-md px-2.5 py-1 text-xs font-semibold uppercase tracking-wide transition-all",
+          showTop250Only
+            ? "bg-orange-500/15 text-orange-500"
+            : "text-muted-foreground hover:text-foreground"
+        )}
+      >
+        🔥 New 250
+      </button>
 
       <div className="ml-auto">
         <TableSearch />
