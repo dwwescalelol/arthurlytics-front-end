@@ -20,7 +20,7 @@ type Props = {
   timeframe: TimeframeOption;
   setTimeframe: (v: TimeframeOption) => void;
   sites: string[];
-  setSites: React.Dispatch<React.SetStateAction<string[]>>;
+  setSites: (next: string[]) => void;
   showNewOnly: boolean;
   setShowNewOnly: (v: boolean) => void;
   showTop250Only: boolean;
