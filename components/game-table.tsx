@@ -75,6 +75,7 @@ export function GameTable({ table, loading }: Props) {
                   <TableHead
                     key={h.id}
                     onClick={handleClick}
+                    style={h.column.columnDef.size ? { width: h.column.columnDef.size } : undefined}
                     className={cn(
                       "h-9 px-4 text-[11px] font-medium uppercase tracking-wide select-none",
                       sortable && "cursor-pointer",

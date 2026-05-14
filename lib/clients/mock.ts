@@ -3,8 +3,19 @@ import allGames from "@/data/allgames.json";
 import gameDetail from "@/data/pokigamedata.json";
 
 export const mockClient: GamesClient = {
-  async getAllGames({ page, sort, order, search }) {
+  async getAllGames({ page, sort, order, search, sites, tags }) {
     let data = [...allGames.data] as any[];
+
+    if (sites) {
+      const siteList = sites.split(",");
+      data = data.filter((g) => siteList.includes(g.site_id));
+    }
+
+    if (tags) {
+      const tagList = tags.split(",");
+      if (tagList.includes("new")) data = data.filter((g) => g.is_new);
+      if (tagList.includes("top250")) data = data.filter((g) => g.new_in_top250);
+    }
 
     if (search) {
       data = data.filter((g) =>

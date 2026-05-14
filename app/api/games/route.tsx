@@ -8,12 +8,16 @@ export async function GET(req: NextRequest) {
   const order = searchParams.get("order") ?? "";
   const search = searchParams.get("search") ?? "";
   const sort = searchParams.get("sort") ?? "";
+  const sites = searchParams.get("sites") ?? "";
+  const tags = searchParams.get("tags") ?? "";
 
   const data = await client.getAllGames({
     page,
     sort,
     order,
     search,
+    sites,
+    tags,
   });
   return NextResponse.json(data);
 }

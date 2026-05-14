@@ -26,7 +26,17 @@
             "weekly_delta_global_rank": 0,
             "monthly_delta_global_rank": -1,
             "is_new": true,
-            "vote_history_7d": [5100, 5150, 5200, 5250, 5280, 5260, 5280]
+            "vote_history_7d": [
+                5100,
+                5150,
+                5200,
+                5250,
+                5280,
+                5260,
+                5280
+            ],
+            "weekly_new_totalvotes": 36960,
+            "monthly_new_totalvotes": 158400
         },
         {
             "site_id": "poki",
@@ -49,7 +59,17 @@
             "weekly_delta_global_rank": 0,
             "monthly_delta_global_rank": -2,
             "is_new": true,
-            "vote_history_7d": [6500, 6000, 5500, 5000, 4600, 4300, 4155]
+            "vote_history_7d": [
+                6500,
+                6000,
+                5500,
+                5000,
+                4600,
+                4300,
+                4155
+            ],
+            "weekly_new_totalvotes": 29085,
+            "monthly_new_totalvotes": 124650
         },
         {
             "site_id": "poki",
@@ -72,7 +92,17 @@
             "weekly_delta_global_rank": -1,
             "monthly_delta_global_rank": 0,
             "is_new": true,
-            "vote_history_7d": [4000, 3900, 4100, 3950, 4050, 3900, 3924]
+            "vote_history_7d": [
+                4000,
+                3900,
+                4100,
+                3950,
+                4050,
+                3900,
+                3924
+            ],
+            "weekly_new_totalvotes": 27468,
+            "monthly_new_totalvotes": 117720
         },
         {
             "site_id": "poki",
@@ -95,7 +125,17 @@
             "weekly_delta_global_rank": 1,
             "monthly_delta_global_rank": -3,
             "is_new": true,
-            "vote_history_7d": [2800, 3000, 3200, 3400, 3550, 3680, 3716]
+            "vote_history_7d": [
+                2800,
+                3000,
+                3200,
+                3400,
+                3550,
+                3680,
+                3716
+            ],
+            "weekly_new_totalvotes": 26012,
+            "monthly_new_totalvotes": 111480
         },
         {
             "site_id": "poki",
@@ -118,7 +158,17 @@
             "weekly_delta_global_rank": 0,
             "monthly_delta_global_rank": null,
             "is_new": true,
-            "vote_history_7d": [500, 1000, 1800, 2400, 3000, 3300, 3478]
+            "vote_history_7d": [
+                500,
+                1000,
+                1800,
+                2400,
+                3000,
+                3300,
+                3478
+            ],
+            "weekly_new_totalvotes": 24346,
+            "monthly_new_totalvotes": 104340
         },
         {
             "site_id": "crazy",
@@ -141,7 +191,17 @@
             "weekly_delta_global_rank": -18,
             "monthly_delta_global_rank": null,
             "new_in_top250": true,
-            "vote_history_7d": [500, 900, 1400, 2000, 2700, 3100, 3419]
+            "vote_history_7d": [
+                500,
+                900,
+                1400,
+                2000,
+                2700,
+                3100,
+                3419
+            ],
+            "weekly_new_totalvotes": 23933,
+            "monthly_new_totalvotes": 102570
         },
         {
             "site_id": "msn",
@@ -164,7 +224,17 @@
             "weekly_delta_global_rank": 0,
             "monthly_delta_global_rank": 1,
             "new_in_top250": true,
-            "vote_history_7d": [2800, 2900, 2850, 2950, 2900, 2930, 2927]
+            "vote_history_7d": [
+                2800,
+                2900,
+                2850,
+                2950,
+                2900,
+                2930,
+                2927
+            ],
+            "weekly_new_totalvotes": 20489,
+            "monthly_new_totalvotes": 87810
         },
         {
             "site_id": "poki",
@@ -186,7 +256,17 @@
             "daily_delta_global_rank": -1,
             "weekly_delta_global_rank": 2,
             "monthly_delta_global_rank": -1,
-            "vote_history_7d": [2700, 2650, 2700, 2680, 2710, 2690, 2694]
+            "vote_history_7d": [
+                2700,
+                2650,
+                2700,
+                2680,
+                2710,
+                2690,
+                2694
+            ],
+            "weekly_new_totalvotes": 18858,
+            "monthly_new_totalvotes": 80820
         },
         {
             "site_id": "msn",
@@ -209,7 +289,18 @@
             "weekly_delta_global_rank": 1,
             "monthly_delta_global_rank": 4,
             "new_in_top250": true,
-            "vote_history_7d": [800, 1200, 1600, 1900, 2100, 2280, 2395]
+            "is_new": true,
+            "vote_history_7d": [
+                800,
+                1200,
+                1600,
+                1900,
+                2100,
+                2280,
+                2395
+            ],
+            "weekly_new_totalvotes": 16765,
+            "monthly_new_totalvotes": 71850
         },
         {
             "site_id": "poki",
@@ -230,7 +321,9 @@
             "monthly_delta_site_rank": -3,
             "daily_delta_global_rank": -3,
             "weekly_delta_global_rank": -6,
-            "monthly_delta_global_rank": -8
+            "monthly_delta_global_rank": -8,
+            "weekly_new_totalvotes": 15246,
+            "monthly_new_totalvotes": 65340
         },
         {
             "site_id": "poki",
@@ -251,7 +344,9 @@
             "monthly_delta_site_rank": 0,
             "daily_delta_global_rank": -1,
             "weekly_delta_global_rank": -3,
-            "monthly_delta_global_rank": -2
+            "monthly_delta_global_rank": -2,
+            "weekly_new_totalvotes": 14336,
+            "monthly_new_totalvotes": 61440
         },
         {
             "site_id": "poki",
@@ -272,7 +367,9 @@
             "monthly_delta_site_rank": 3,
             "daily_delta_global_rank": -3,
             "weekly_delta_global_rank": -1,
-            "monthly_delta_global_rank": 2
+            "monthly_delta_global_rank": 2,
+            "weekly_new_totalvotes": 13209,
+            "monthly_new_totalvotes": 56610
         },
         {
             "site_id": "poki",
@@ -293,7 +390,9 @@
             "monthly_delta_site_rank": 3,
             "daily_delta_global_rank": -3,
             "weekly_delta_global_rank": -5,
-            "monthly_delta_global_rank": 1
+            "monthly_delta_global_rank": 1,
+            "weekly_new_totalvotes": 13188,
+            "monthly_new_totalvotes": 56520
         },
         {
             "site_id": "msn",
@@ -314,7 +413,9 @@
             "monthly_delta_site_rank": -1,
             "daily_delta_global_rank": -4,
             "weekly_delta_global_rank": -5,
-            "monthly_delta_global_rank": 3
+            "monthly_delta_global_rank": 3,
+            "weekly_new_totalvotes": 13167,
+            "monthly_new_totalvotes": 56430
         },
         {
             "site_id": "poki",
@@ -335,7 +436,9 @@
             "monthly_delta_site_rank": -7,
             "daily_delta_global_rank": -4,
             "weekly_delta_global_rank": -5,
-            "monthly_delta_global_rank": -13
+            "monthly_delta_global_rank": -13,
+            "weekly_new_totalvotes": 12901,
+            "monthly_new_totalvotes": 55290
         },
         {
             "site_id": "msn",
@@ -356,7 +459,9 @@
             "monthly_delta_site_rank": -1,
             "daily_delta_global_rank": 2,
             "weekly_delta_global_rank": 1,
-            "monthly_delta_global_rank": 1
+            "monthly_delta_global_rank": 1,
+            "weekly_new_totalvotes": 12691,
+            "monthly_new_totalvotes": 54390
         },
         {
             "site_id": "crazy",
@@ -377,7 +482,9 @@
             "monthly_delta_site_rank": null,
             "daily_delta_global_rank": 6,
             "weekly_delta_global_rank": -15,
-            "monthly_delta_global_rank": null
+            "monthly_delta_global_rank": null,
+            "weekly_new_totalvotes": 12600,
+            "monthly_new_totalvotes": 54000
         },
         {
             "site_id": "msn",
@@ -398,7 +505,9 @@
             "monthly_delta_site_rank": -2,
             "daily_delta_global_rank": -3,
             "weekly_delta_global_rank": 7,
-            "monthly_delta_global_rank": -6
+            "monthly_delta_global_rank": -6,
+            "weekly_new_totalvotes": 12530,
+            "monthly_new_totalvotes": 53700
         },
         {
             "site_id": "poki",
@@ -419,7 +528,9 @@
             "monthly_delta_site_rank": 0,
             "daily_delta_global_rank": -1,
             "weekly_delta_global_rank": -2,
-            "monthly_delta_global_rank": -1
+            "monthly_delta_global_rank": -1,
+            "weekly_new_totalvotes": 12019,
+            "monthly_new_totalvotes": 51510
         },
         {
             "site_id": "crazy",
@@ -440,7 +551,9 @@
             "monthly_delta_site_rank": null,
             "daily_delta_global_rank": -11,
             "weekly_delta_global_rank": 10,
-            "monthly_delta_global_rank": null
+            "monthly_delta_global_rank": null,
+            "weekly_new_totalvotes": 11109,
+            "monthly_new_totalvotes": 47610
         },
         {
             "site_id": "poki",
@@ -461,7 +574,9 @@
             "monthly_delta_site_rank": -272,
             "daily_delta_global_rank": 4,
             "weekly_delta_global_rank": 9,
-            "monthly_delta_global_rank": -466
+            "monthly_delta_global_rank": -466,
+            "weekly_new_totalvotes": 11088,
+            "monthly_new_totalvotes": 47520
         },
         {
             "site_id": "poki",
@@ -482,7 +597,9 @@
             "monthly_delta_site_rank": 5,
             "daily_delta_global_rank": 0,
             "weekly_delta_global_rank": 0,
-            "monthly_delta_global_rank": 5
+            "monthly_delta_global_rank": 5,
+            "weekly_new_totalvotes": 10521,
+            "monthly_new_totalvotes": 45090
         },
         {
             "site_id": "msn",
@@ -503,7 +620,9 @@
             "monthly_delta_site_rank": -4,
             "daily_delta_global_rank": -4,
             "weekly_delta_global_rank": -3,
-            "monthly_delta_global_rank": -18
+            "monthly_delta_global_rank": -18,
+            "weekly_new_totalvotes": 10507,
+            "monthly_new_totalvotes": 45030
         },
         {
             "site_id": "poki",
@@ -524,7 +643,9 @@
             "monthly_delta_site_rank": 2,
             "daily_delta_global_rank": 0,
             "weekly_delta_global_rank": -1,
-            "monthly_delta_global_rank": 2
+            "monthly_delta_global_rank": 2,
+            "weekly_new_totalvotes": 10171,
+            "monthly_new_totalvotes": 43590
         },
         {
             "site_id": "crazy",
@@ -545,7 +666,9 @@
             "monthly_delta_site_rank": -10,
             "daily_delta_global_rank": -15,
             "weekly_delta_global_rank": -6,
-            "monthly_delta_global_rank": -52
+            "monthly_delta_global_rank": -52,
+            "weekly_new_totalvotes": 10164,
+            "monthly_new_totalvotes": 43560
         },
         {
             "site_id": "poki",
@@ -566,7 +689,9 @@
             "monthly_delta_site_rank": -177,
             "daily_delta_global_rank": 3,
             "weekly_delta_global_rank": 9,
-            "monthly_delta_global_rank": -300
+            "monthly_delta_global_rank": -300,
+            "weekly_new_totalvotes": 10150,
+            "monthly_new_totalvotes": 43500
         },
         {
             "site_id": "poki",
@@ -587,7 +712,9 @@
             "monthly_delta_site_rank": 1,
             "daily_delta_global_rank": -2,
             "weekly_delta_global_rank": -1,
-            "monthly_delta_global_rank": 1
+            "monthly_delta_global_rank": 1,
+            "weekly_new_totalvotes": 10038,
+            "monthly_new_totalvotes": 43020
         },
         {
             "site_id": "poki",
@@ -608,7 +735,9 @@
             "monthly_delta_site_rank": 4,
             "daily_delta_global_rank": 3,
             "weekly_delta_global_rank": -1,
-            "monthly_delta_global_rank": 5
+            "monthly_delta_global_rank": 5,
+            "weekly_new_totalvotes": 9702,
+            "monthly_new_totalvotes": 41580
         },
         {
             "site_id": "poki",
@@ -629,7 +758,9 @@
             "monthly_delta_site_rank": -4,
             "daily_delta_global_rank": -6,
             "weekly_delta_global_rank": -11,
-            "monthly_delta_global_rank": -9
+            "monthly_delta_global_rank": -9,
+            "weekly_new_totalvotes": 9086,
+            "monthly_new_totalvotes": 38940
         },
         {
             "site_id": "poki",
@@ -650,7 +781,9 @@
             "monthly_delta_site_rank": -83,
             "daily_delta_global_rank": 4,
             "weekly_delta_global_rank": -3,
-            "monthly_delta_global_rank": -133
+            "monthly_delta_global_rank": -133,
+            "weekly_new_totalvotes": 9065,
+            "monthly_new_totalvotes": 38850
         },
         {
             "site_id": "poki",
@@ -671,7 +804,9 @@
             "monthly_delta_site_rank": 4,
             "daily_delta_global_rank": 1,
             "weekly_delta_global_rank": -8,
-            "monthly_delta_global_rank": 4
+            "monthly_delta_global_rank": 4,
+            "weekly_new_totalvotes": 8813,
+            "monthly_new_totalvotes": 37770
         },
         {
             "site_id": "poki",
@@ -692,7 +827,9 @@
             "monthly_delta_site_rank": 7,
             "daily_delta_global_rank": -2,
             "weekly_delta_global_rank": 5,
-            "monthly_delta_global_rank": 7
+            "monthly_delta_global_rank": 7,
+            "weekly_new_totalvotes": 8764,
+            "monthly_new_totalvotes": 37560
         },
         {
             "site_id": "poki",
@@ -713,7 +850,9 @@
             "monthly_delta_site_rank": 4,
             "daily_delta_global_rank": 0,
             "weekly_delta_global_rank": -2,
-            "monthly_delta_global_rank": 4
+            "monthly_delta_global_rank": 4,
+            "weekly_new_totalvotes": 8743,
+            "monthly_new_totalvotes": 37470
         },
         {
             "site_id": "poki",
@@ -734,7 +873,9 @@
             "monthly_delta_site_rank": 4,
             "daily_delta_global_rank": 2,
             "weekly_delta_global_rank": -4,
-            "monthly_delta_global_rank": 4
+            "monthly_delta_global_rank": 4,
+            "weekly_new_totalvotes": 8631,
+            "monthly_new_totalvotes": 36990
         },
         {
             "site_id": "crazy",
@@ -755,7 +896,9 @@
             "monthly_delta_site_rank": 3,
             "daily_delta_global_rank": 7,
             "weekly_delta_global_rank": 12,
-            "monthly_delta_global_rank": 21
+            "monthly_delta_global_rank": 21,
+            "weekly_new_totalvotes": 8393,
+            "monthly_new_totalvotes": 35970
         },
         {
             "site_id": "poki",
@@ -776,7 +919,9 @@
             "monthly_delta_site_rank": null,
             "daily_delta_global_rank": 0,
             "weekly_delta_global_rank": -405,
-            "monthly_delta_global_rank": null
+            "monthly_delta_global_rank": null,
+            "weekly_new_totalvotes": 8253,
+            "monthly_new_totalvotes": 35370
         },
         {
             "site_id": "poki",
@@ -797,7 +942,9 @@
             "monthly_delta_site_rank": 4,
             "daily_delta_global_rank": -5,
             "weekly_delta_global_rank": -7,
-            "monthly_delta_global_rank": 3
+            "monthly_delta_global_rank": 3,
+            "weekly_new_totalvotes": 7378,
+            "monthly_new_totalvotes": 31620
         },
         {
             "site_id": "crazy",
@@ -818,7 +965,9 @@
             "monthly_delta_site_rank": 1,
             "daily_delta_global_rank": -12,
             "weekly_delta_global_rank": 4,
-            "monthly_delta_global_rank": 2
+            "monthly_delta_global_rank": 2,
+            "weekly_new_totalvotes": 7273,
+            "monthly_new_totalvotes": 31170
         },
         {
             "site_id": "poki",
@@ -839,7 +988,9 @@
             "monthly_delta_site_rank": 16,
             "daily_delta_global_rank": -4,
             "weekly_delta_global_rank": -4,
-            "monthly_delta_global_rank": 20
+            "monthly_delta_global_rank": 20,
+            "weekly_new_totalvotes": 7210,
+            "monthly_new_totalvotes": 30900
         },
         {
             "site_id": "msn",
@@ -860,7 +1011,9 @@
             "monthly_delta_site_rank": 1,
             "daily_delta_global_rank": 2,
             "weekly_delta_global_rank": 10,
-            "monthly_delta_global_rank": 24
+            "monthly_delta_global_rank": 24,
+            "weekly_new_totalvotes": 7168,
+            "monthly_new_totalvotes": 30720
         },
         {
             "site_id": "msn",
@@ -881,7 +1034,9 @@
             "monthly_delta_site_rank": -1,
             "daily_delta_global_rank": 4,
             "weekly_delta_global_rank": 0,
-            "monthly_delta_global_rank": 8
+            "monthly_delta_global_rank": 8,
+            "weekly_new_totalvotes": 7119,
+            "monthly_new_totalvotes": 30510
         },
         {
             "site_id": "msn",
@@ -902,7 +1057,9 @@
             "monthly_delta_site_rank": 6,
             "daily_delta_global_rank": 3,
             "weekly_delta_global_rank": 6,
-            "monthly_delta_global_rank": 34
+            "monthly_delta_global_rank": 34,
+            "weekly_new_totalvotes": 7077,
+            "monthly_new_totalvotes": 30330
         },
         {
             "site_id": "poki",
@@ -923,7 +1080,9 @@
             "monthly_delta_site_rank": 7,
             "daily_delta_global_rank": -3,
             "weekly_delta_global_rank": 1,
-            "monthly_delta_global_rank": 11
+            "monthly_delta_global_rank": 11,
+            "weekly_new_totalvotes": 6671,
+            "monthly_new_totalvotes": 28590
         },
         {
             "site_id": "msn",
@@ -944,7 +1103,9 @@
             "monthly_delta_site_rank": -7,
             "daily_delta_global_rank": -7,
             "weekly_delta_global_rank": -4,
-            "monthly_delta_global_rank": -19
+            "monthly_delta_global_rank": -19,
+            "weekly_new_totalvotes": 6657,
+            "monthly_new_totalvotes": 28530
         },
         {
             "site_id": "msn",
@@ -965,7 +1126,9 @@
             "monthly_delta_site_rank": 1,
             "daily_delta_global_rank": 1,
             "weekly_delta_global_rank": 0,
-            "monthly_delta_global_rank": 8
+            "monthly_delta_global_rank": 8,
+            "weekly_new_totalvotes": 6517,
+            "monthly_new_totalvotes": 27930
         },
         {
             "site_id": "msn",
@@ -986,7 +1149,9 @@
             "monthly_delta_site_rank": -4,
             "daily_delta_global_rank": 5,
             "weekly_delta_global_rank": -6,
-            "monthly_delta_global_rank": -12
+            "monthly_delta_global_rank": -12,
+            "weekly_new_totalvotes": 6482,
+            "monthly_new_totalvotes": 27780
         },
         {
             "site_id": "poki",
@@ -1007,7 +1172,9 @@
             "monthly_delta_site_rank": 0,
             "daily_delta_global_rank": -8,
             "weekly_delta_global_rank": -7,
-            "monthly_delta_global_rank": -3
+            "monthly_delta_global_rank": -3,
+            "weekly_new_totalvotes": 6426,
+            "monthly_new_totalvotes": 27540
         },
         {
             "site_id": "crazy",
@@ -1028,7 +1195,9 @@
             "monthly_delta_site_rank": -6,
             "daily_delta_global_rank": 0,
             "weekly_delta_global_rank": 11,
-            "monthly_delta_global_rank": -27
+            "monthly_delta_global_rank": -27,
+            "weekly_new_totalvotes": 6377,
+            "monthly_new_totalvotes": 27330
         },
         {
             "site_id": "poki",
@@ -1049,7 +1218,9 @@
             "monthly_delta_site_rank": 4,
             "daily_delta_global_rank": -5,
             "weekly_delta_global_rank": -11,
-            "monthly_delta_global_rank": 3
+            "monthly_delta_global_rank": 3,
+            "weekly_new_totalvotes": 6286,
+            "monthly_new_totalvotes": 26940
         },
         {
             "site_id": "crazy",
@@ -1070,7 +1241,9 @@
             "monthly_delta_site_rank": -8,
             "daily_delta_global_rank": -2,
             "weekly_delta_global_rank": 41,
-            "monthly_delta_global_rank": -34
+            "monthly_delta_global_rank": -34,
+            "weekly_new_totalvotes": 6244,
+            "monthly_new_totalvotes": 26760
         }
     ]
 }

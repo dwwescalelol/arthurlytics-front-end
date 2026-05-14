@@ -11,6 +11,8 @@ export type GameStats = {
 
   daily_new_totalvotes: number;
   daily_new_upvotes: number;
+  weekly_new_totalvotes: number;
+  monthly_new_totalvotes: number;
 
   site_rank: number;
   global_rank: number;
@@ -79,11 +81,17 @@ export type Game = {
   created_at: string | null;
   updated_at: string | null;
 
+  // Rankings
+  global_rank: number | null;
+  site_rank: number | null;
+
   // Voting history (existing)
   history: {
     upvotes: number;
     totalvotes: number;
     timestamp: number;
+    global_rank?: number;
+    site_rank?: number;
   }[];
 };
 
@@ -92,6 +100,8 @@ export type AllGamesQuery = {
   sort: string;
   order: string;
   search: string;
+  sites?: string;
+  tags?: string;
 };
 
 export type AllGamesResponse = {

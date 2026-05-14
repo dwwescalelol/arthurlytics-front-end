@@ -9,7 +9,7 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { useEffect, useMemo, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 import { columns } from "./game-columns";
 import { GameTableToolbar, TimeframeOption, TIMEFRAME_BASE } from "./game-table-toolbar";
@@ -31,6 +31,7 @@ export function GameDataTable({
   initialTotalPages,
 }: Props) {
   const params = useSearchParams();
+  const router = useRouter();
 
   const [data, setData] = useState(initialData);
   const [page, setPage] = useState(initialPage);
@@ -38,10 +39,41 @@ export function GameDataTable({
 
   const [timeframe, setTimeframe] = useState<TimeframeOption>("7d");
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
-  const [sites, setSites] = useState<string[]>(["msn", "poki", "crazy"]);
-  const [showNewOnly, setShowNewOnly] = useState(false);
-  const [showTop250Only, setShowTop250Only] = useState(false);
   const [sorting, setSorting] = useState<SortingState>([]);
+
+  const sitesParam = params.get("sites");
+  const sites = sitesParam ? sitesParam.split(",") : ["msn", "poki", "crazy"];
+  const tagsParam = params.get("tags") ?? "";
+  const showNewOnly = tagsParam.includes("new");
+  const showTop250Only = tagsParam.includes("top250");
+
+  const setSites = (next: string[]) => {
+    const p = new URLSearchParams(params.toString());
+    if (next.length < 3) p.set("sites", next.join(","));
+    else p.delete("sites");
+    p.set("page", "1");
+    router.push(`/games?${p.toString()}`);
+  };
+
+  const setShowNewOnly = (val: boolean) => {
+    const p = new URLSearchParams(params.toString());
+    const tags = new Set(tagsParam.split(",").filter(Boolean));
+    val ? tags.add("new") : tags.delete("new");
+    if (tags.size > 0) p.set("tags", [...tags].join(","));
+    else p.delete("tags");
+    p.set("page", "1");
+    router.push(`/games?${p.toString()}`);
+  };
+
+  const setShowTop250Only = (val: boolean) => {
+    const p = new URLSearchParams(params.toString());
+    const tags = new Set(tagsParam.split(",").filter(Boolean));
+    val ? tags.add("top250") : tags.delete("top250");
+    if (tags.size > 0) p.set("tags", [...tags].join(","));
+    else p.delete("tags");
+    p.set("page", "1");
+    router.push(`/games?${p.toString()}`);
+  };
 
   const queryString = params.toString();
 
@@ -52,6 +84,8 @@ export function GameDataTable({
         sort: params.get("sort") ?? "",
         order: params.get("order") ?? "",
         search: params.get("search") ?? "",
+        sites: sitesParam ?? undefined,
+        tags: tagsParam || undefined,
       })
       .then((res) => {
         setData(res.data);
@@ -62,15 +96,8 @@ export function GameDataTable({
 
   const cols = useMemo(() => columns(TIMEFRAME_BASE[timeframe]), [timeframe]);
 
-  const filteredData = useMemo(() => {
-    let d = data;
-    if (showNewOnly) d = d.filter((g) => g.is_new);
-    if (showTop250Only) d = d.filter((g) => g.new_in_top250);
-    return d;
-  }, [data, showNewOnly, showTop250Only]);
-
   const table = useReactTable({
-    data: filteredData,
+    data,
     columns: cols,
     state: {
       columnFilters,
