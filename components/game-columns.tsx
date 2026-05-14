@@ -6,7 +6,8 @@ import { GameStats } from "@/types/games.types";
 import { cn } from "@/lib/utils";
 import { Sparkline } from "@/components/sparkline";
 
-const fmt = (n: number) => {
+const fmt = (n: number | null | undefined) => {
+  if (n == null) return "—";
   if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(n % 1_000_000 === 0 ? 0 : 2).replace(/\.?0+$/, "")}M`;
   if (n >= 1_000) return `${(n / 1_000).toFixed(n % 1_000 === 0 ? 0 : 1).replace(/\.?0+$/, "")}K`;
   return String(n);
@@ -38,16 +39,10 @@ const Delta = ({ value }: { value?: number | null }) => {
           : "bg-red-500/10 text-red-600 dark:text-red-400"
       )}
     >
-      {isPositive ? "+" : ""}
-      {value}
+      {isPositive ? "+" : "-"}
+      {fmt(Math.abs(value))}
     </span>
   );
-};
-
-const momentum = (g: GameStats): number => {
-  if (!g.totalvotes) return 0;
-  const votes = g.weekly_delta_vote ?? g.daily_delta_vote ?? 0;
-  return (votes / g.totalvotes) * 100;
 };
 
 export const columns = (
@@ -56,6 +51,7 @@ export const columns = (
   {
     accessorKey: "global_rank",
     header: "Global Rank",
+    size: 80,
     cell: ({ row }) => {
       const rank = row.original.global_rank;
       const d =
@@ -76,6 +72,7 @@ export const columns = (
   {
     accessorKey: "site_rank",
     header: "Site Rank",
+    size: 80,
     cell: ({ row }) => {
       const rank = row.original.site_rank;
       const d =
@@ -153,30 +150,16 @@ export const columns = (
     },
   },
   {
-    id: "trending",
-    header: "Trend",
-    meta: { align: "right", clientSort: true },
-    sortingFn: (a, b) => momentum(a.original) - momentum(b.original),
-    cell: ({ row }) => {
-      const score = momentum(row.original);
-      if (score === 0) return <div className="text-right text-muted-foreground/40">—</div>;
-      const isUp = score > 0;
-      return (
-        <div className={cn(
-          "text-right tabular-nums font-medium text-xs",
-          isUp ? "text-green-600 dark:text-green-400" : "text-red-600 dark:text-red-400"
-        )}>
-          {isUp ? "↑" : "↓"}{Math.abs(score).toFixed(1)}%
-        </div>
-      );
-    },
-  },
-  {
-    accessorKey: "daily_new_totalvotes",
-    header: "Daily Votes",
+    id: "period_votes",
+    header: timeframe === "daily" ? "Daily Votes" : timeframe === "weekly" ? "7D Votes" : "30D Votes",
     meta: { align: "right" },
     cell: ({ row }) => {
-      const value = row.original.daily_new_totalvotes;
+      const value =
+        timeframe === "daily"
+          ? row.original.daily_new_totalvotes
+          : timeframe === "weekly"
+          ? row.original.weekly_new_totalvotes
+          : row.original.monthly_new_totalvotes;
       const delta =
         timeframe === "daily"
           ? row.original.daily_delta_vote
@@ -227,6 +210,7 @@ export const columns = (
   {
     id: "open_link",
     header: "Link",
+    size: 40,
     enableSorting: false,
     cell: ({ row }) => (
       <a

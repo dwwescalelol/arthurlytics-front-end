@@ -45,7 +45,20 @@ type HistoryItem = {
   upvotes: number;
 };
 
-export function GameVotesChart({ history }: { history: HistoryItem[] }) {
+const PILL_OPTIONS = [
+  { value: "7d", label: "7D" },
+  { value: "30d", label: "30D" },
+  { value: "90d", label: "90D" },
+  { value: "all", label: "All" },
+] as const;
+
+export function GameVotesChart({
+  history,
+  pill,
+}: {
+  history: HistoryItem[];
+  pill?: boolean;
+}) {
   // 🔒 hydration guard — hooks MUST come first
   const [mounted, setMounted] = React.useState(false);
 
@@ -91,6 +104,7 @@ export function GameVotesChart({ history }: { history: HistoryItem[] }) {
     return chartData.filter((item) => new Date(item.date) >= start);
   }, [chartData, timeRange]);
 
+
   // 🔒 guard AFTER hooks
   if (!mounted) return (
     <Card className="pt-0">
@@ -132,24 +146,43 @@ export function GameVotesChart({ history }: { history: HistoryItem[] }) {
             ))}
           </div>
 
-          <Select
-            value={timeRange}
-            onValueChange={(v) => setTimeRange(v as "all" | "7d" | "30d" | "90d")}
-          >
-            <SelectTrigger className="hidden w-36 sm:flex">
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="7d">Last 7 days</SelectItem>
-              <SelectItem value="30d">Last 30 days</SelectItem>
-              <SelectItem value="90d">Last 90 days</SelectItem>
-              <SelectItem value="all">All time</SelectItem>
-            </SelectContent>
-          </Select>
+          {pill ? (
+            <div className="flex items-center rounded-md border border-border/60 bg-muted/40 p-0.5 gap-0.5">
+              {PILL_OPTIONS.map(({ value, label }) => (
+                <button
+                  key={value}
+                  onClick={() => setTimeRange(value)}
+                  className={`rounded px-2.5 py-1 text-xs font-medium transition-all ${
+                    timeRange === value
+                      ? "bg-background text-foreground shadow-sm"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+          ) : (
+            <Select
+              value={timeRange}
+              onValueChange={(v) => setTimeRange(v as "all" | "7d" | "30d" | "90d")}
+            >
+              <SelectTrigger className="hidden w-36 sm:flex">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="7d">Last 7 days</SelectItem>
+                <SelectItem value="30d">Last 30 days</SelectItem>
+                <SelectItem value="90d">Last 90 days</SelectItem>
+                <SelectItem value="all">All time</SelectItem>
+              </SelectContent>
+            </Select>
+          )}
         </div>
       </CardHeader>
 
       <CardContent className="px-2 pt-4 sm:px-6 sm:pt-6">
+        <div>
         <ChartContainer
           config={chartConfig}
           className="aspect-auto h-62.5 w-full"
@@ -202,6 +235,7 @@ export function GameVotesChart({ history }: { history: HistoryItem[] }) {
               fill="var(--color-daily_new_upvotes)"
               stackId="votes"
               radius={[0, 0, 0, 0]}
+              isAnimationActive={false}
             />
 
             <Bar
@@ -209,9 +243,13 @@ export function GameVotesChart({ history }: { history: HistoryItem[] }) {
               fill="var(--color-daily_new_downvotes)"
               stackId="votes"
               radius={[3, 3, 0, 0]}
+              isAnimationActive={false}
             />
+
+
           </BarChart>
         </ChartContainer>
+        </div>
       </CardContent>
     </Card>
   );

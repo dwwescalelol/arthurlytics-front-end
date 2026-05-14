@@ -1,12 +1,11 @@
-import { Card } from "@/components/ui/card";
-import { GameVotesChart } from "@/components/game-votes-chart";
-import { GameHeader } from "../../game/components/GameHeader";
-import { GameMeta } from "../../game/components/GameMeta";
-import { GameDescription } from "../../game/components/GameDescription";
-import { PageFadeIn } from "@/components/page-fade-in";
 import { client } from "@/lib/clients";
+import { PageFadeIn } from "@/components/page-fade-in";
 import { SetDocumentTitle } from "@/components/set-document-title";
-import { GameStats } from "../../game/components/GameStats/index";
+import { GameVotesChart } from "@/components/game-votes-chart";
+import { GameRankChart } from "@/components/game-rank-chart";
+import { GameHero } from "../../game/components/GameHero";
+import { GameStatTiles } from "../../game/components/GameStatTiles";
+import { GameInfoSection } from "../../game/components/GameInfoSection";
 
 export default async function Page({
   params,
@@ -28,18 +27,16 @@ export default async function Page({
   return (
     <PageFadeIn>
       <SetDocumentTitle title={`${game.name} · ${site.toUpperCase()}`} />
-
       <div className="space-y-6">
-        <GameMeta game={game} />
-
-        <div className="grid grid-cols-1 lg:grid-cols-[5fr_7fr] gap-6 items-stretch">
-          <GameHeader game={game} />
-
-          <GameStats game={game} />
-        </div>
-
-        <GameVotesChart history={game.history} />
-        <GameDescription game={game} />
+        <GameHero game={game} />
+        <GameStatTiles
+          history={game.history}
+          globalRank={game.global_rank ?? null}
+          siteRank={game.site_rank ?? null}
+        />
+        <GameVotesChart history={game.history} pill />
+        <GameRankChart history={game.history} />
+        <GameInfoSection game={game} />
       </div>
     </PageFadeIn>
   );
