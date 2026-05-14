@@ -2,8 +2,10 @@
 
 import {
   ColumnFiltersState,
+  SortingState,
   getCoreRowModel,
   getFilteredRowModel,
+  getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
 import { useEffect, useMemo, useState } from "react";
@@ -39,6 +41,7 @@ export function GameDataTable({
   const [sites, setSites] = useState<string[]>(["msn", "poki", "crazy"]);
   const [showNewOnly, setShowNewOnly] = useState(false);
   const [showTop250Only, setShowTop250Only] = useState(false);
+  const [sorting, setSorting] = useState<SortingState>([]);
 
   const queryString = params.toString();
 
@@ -71,10 +74,13 @@ export function GameDataTable({
     columns: cols,
     state: {
       columnFilters,
+      sorting,
     },
     onColumnFiltersChange: setColumnFilters,
+    onSortingChange: setSorting,
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
+    getSortedRowModel: getSortedRowModel(),
   });
 
   return (

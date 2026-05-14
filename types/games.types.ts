@@ -29,6 +29,7 @@ export type GameStats = {
 
   is_new?: boolean;
   new_in_top250?: boolean;
+  vote_history_7d?: number[];
 };
 
 type NullableBoolean = boolean | null;
