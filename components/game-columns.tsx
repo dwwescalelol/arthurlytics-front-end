@@ -4,6 +4,7 @@ import { ExternalLink } from "lucide-react";
 import Link from "next/link";
 import { GameStats } from "@/types/games.types";
 import { cn } from "@/lib/utils";
+import { Sparkline } from "@/components/sparkline";
 
 const fmt = (n: number) => {
   if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(n % 1_000_000 === 0 ? 0 : 2).replace(/\.?0+$/, "")}M`;
@@ -43,22 +44,32 @@ const Delta = ({ value }: { value?: number | null }) => {
   );
 };
 
+const momentum = (g: GameStats): number => {
+  if (!g.totalvotes) return 0;
+  const votes = g.weekly_delta_vote ?? g.daily_delta_vote ?? 0;
+  return (votes / g.totalvotes) * 100;
+};
+
 export const columns = (
   timeframe: "daily" | "weekly" | "monthly"
 ): ColumnDef<GameStats>[] => [
   {
-    accessorKey: "site_id",
-    header: "Site",
-    filterFn: siteFilterFn,
-    enableSorting: false,
+    accessorKey: "global_rank",
+    header: "Global Rank",
     cell: ({ row }) => {
-      const site = row.original.site_id;
-      const dot = SITE_COLORS[site] ?? "bg-muted-foreground";
+      const rank = row.original.global_rank;
+      const d =
+        timeframe === "daily"
+          ? row.original.daily_delta_global_rank
+          : timeframe === "weekly"
+          ? row.original.weekly_delta_global_rank
+          : row.original.monthly_delta_global_rank;
+
       return (
-        <span className="inline-flex items-center gap-1.5 rounded-md bg-muted px-2 py-0.5 text-xs font-medium capitalize">
-          <span className={cn("h-1.5 w-1.5 rounded-full", dot)} />
-          {site}
-        </span>
+        <div className="flex items-center tabular-nums">
+          <span className="font-medium">{rank}</span>
+          <Delta value={d ? d * -1 : d} />
+        </div>
       );
     },
   },
@@ -83,22 +94,18 @@ export const columns = (
     },
   },
   {
-    accessorKey: "global_rank",
-    header: "Global Rank",
+    accessorKey: "site_id",
+    header: "Site",
+    filterFn: siteFilterFn,
+    enableSorting: false,
     cell: ({ row }) => {
-      const rank = row.original.global_rank;
-      const d =
-        timeframe === "daily"
-          ? row.original.daily_delta_global_rank
-          : timeframe === "weekly"
-          ? row.original.weekly_delta_global_rank
-          : row.original.monthly_delta_global_rank;
-
+      const site = row.original.site_id;
+      const dot = SITE_COLORS[site] ?? "bg-muted-foreground";
       return (
-        <div className="flex items-center tabular-nums">
-          <span className="font-medium">{rank}</span>
-          <Delta value={d ? d * -1 : d} />
-        </div>
+        <span className="inline-flex items-center gap-1.5 rounded-md bg-muted px-2 py-0.5 text-xs font-medium capitalize">
+          <span className={cn("h-1.5 w-1.5 rounded-full", dot)} />
+          {site}
+        </span>
       );
     },
   },
@@ -134,6 +141,35 @@ export const columns = (
       );
     },
     enableSorting: false,
+  },
+  {
+    id: "sparkline",
+    header: "7D",
+    enableSorting: false,
+    cell: ({ row }) => {
+      const history = row.original.vote_history_7d;
+      if (!history) return <div className="text-muted-foreground/40">—</div>;
+      return <Sparkline data={history} />;
+    },
+  },
+  {
+    id: "trending",
+    header: "Trend",
+    meta: { align: "right", clientSort: true },
+    sortingFn: (a, b) => momentum(a.original) - momentum(b.original),
+    cell: ({ row }) => {
+      const score = momentum(row.original);
+      if (score === 0) return <div className="text-right text-muted-foreground/40">—</div>;
+      const isUp = score > 0;
+      return (
+        <div className={cn(
+          "text-right tabular-nums font-medium text-xs",
+          isUp ? "text-green-600 dark:text-green-400" : "text-red-600 dark:text-red-400"
+        )}>
+          {isUp ? "↑" : "↓"}{Math.abs(score).toFixed(1)}%
+        </div>
+      );
+    },
   },
   {
     accessorKey: "daily_new_totalvotes",
@@ -190,7 +226,7 @@ export const columns = (
   },
   {
     id: "open_link",
-    header: "",
+    header: "Link",
     enableSorting: false,
     cell: ({ row }) => (
       <a

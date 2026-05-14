@@ -47,17 +47,34 @@ export function GameTable({ table, loading }: Props) {
           {table.getHeaderGroups().map((hg) => (
             <TableRow key={hg.id} className="hover:bg-transparent border-border/60">
               {hg.headers.map((h) => {
+                const meta = h.column.columnDef.meta as any;
+                const isClientSort = !!meta?.clientSort;
                 const sortable = h.column.getCanSort();
-                const isActive = currentSort === h.column.id;
-                const isAsc = isActive && currentOrder === "asc";
-                const isDesc = isActive && currentOrder === "desc";
+                const alignRight = meta?.align === "right";
 
-                const alignRight = (h.column.columnDef.meta as any)?.align === "right";
+                const isActive = isClientSort
+                  ? h.column.getIsSorted() !== false
+                  : currentSort === h.column.id;
+                const isAsc = isClientSort
+                  ? h.column.getIsSorted() === "asc"
+                  : isActive && currentOrder === "asc";
+                const isDesc = isClientSort
+                  ? h.column.getIsSorted() === "desc"
+                  : isActive && currentOrder === "desc";
+
+                const handleClick = () => {
+                  if (!sortable) return;
+                  if (isClientSort) {
+                    h.column.toggleSorting(h.column.getIsSorted() === "asc");
+                  } else {
+                    onSort(h.column.id);
+                  }
+                };
 
                 return (
                   <TableHead
                     key={h.id}
-                    onClick={() => sortable && onSort(h.column.id)}
+                    onClick={handleClick}
                     className={cn(
                       "h-9 px-4 text-[11px] font-medium uppercase tracking-wide select-none",
                       sortable && "cursor-pointer",
