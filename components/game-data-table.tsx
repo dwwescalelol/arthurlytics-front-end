@@ -37,6 +37,8 @@ export function GameDataTable({
   const [timeframe, setTimeframe] = useState<TimeframeOption>("7d");
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [sites, setSites] = useState<string[]>(["msn", "poki", "crazy"]);
+  const [showNewOnly, setShowNewOnly] = useState(false);
+  const [showTop250Only, setShowTop250Only] = useState(false);
 
   const queryString = params.toString();
 
@@ -57,8 +59,15 @@ export function GameDataTable({
 
   const cols = useMemo(() => columns(TIMEFRAME_BASE[timeframe]), [timeframe]);
 
+  const filteredData = useMemo(() => {
+    let d = data;
+    if (showNewOnly) d = d.filter((g) => g.is_new);
+    if (showTop250Only) d = d.filter((g) => g.new_in_top250);
+    return d;
+  }, [data, showNewOnly, showTop250Only]);
+
   const table = useReactTable({
-    data,
+    data: filteredData,
     columns: cols,
     state: {
       columnFilters,
@@ -75,6 +84,10 @@ export function GameDataTable({
         setTimeframe={setTimeframe}
         sites={sites}
         setSites={setSites}
+        showNewOnly={showNewOnly}
+        setShowNewOnly={setShowNewOnly}
+        showTop250Only={showTop250Only}
+        setShowTop250Only={setShowTop250Only}
       />
 
       <GameTable table={table} loading={false} />

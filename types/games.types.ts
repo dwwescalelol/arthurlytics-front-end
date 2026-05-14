@@ -26,6 +26,9 @@ export type GameStats = {
   daily_delta_global_rank: NullableNumber;
   weekly_delta_global_rank: NullableNumber;
   monthly_delta_global_rank: NullableNumber;
+
+  is_new?: boolean;
+  new_in_top250?: boolean;
 };
 
 type NullableBoolean = boolean | null;
