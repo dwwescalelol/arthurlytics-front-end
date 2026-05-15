@@ -1,6 +1,6 @@
 import { ColumnDef, FilterFn } from "@tanstack/react-table";
 import { useRouter } from "next/navigation";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, User } from "lucide-react";
 import Link from "next/link";
 import { GameStats } from "@/types/games.types";
 import { cn } from "@/lib/utils";
@@ -129,7 +129,7 @@ export const columns = (
               New
             </span>
           )}
-          {game.new_in_top250 && (
+          {game.is_new_top250 && (
             <span className="rounded px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide bg-orange-500/10 text-orange-500">
               🔥 New 250
             </span>
@@ -140,11 +140,26 @@ export const columns = (
     enableSorting: false,
   },
   {
+    accessorKey: "developer_name",
+    header: "Author",
+    enableSorting: false,
+    cell: ({ row }) => {
+      const name = row.original.developer_name;
+      if (!name) return null;
+      return (
+        <span className="inline-flex items-center gap-1.5 rounded-md bg-muted px-2 py-0.5 text-xs font-medium shrink-0">
+          <User className="h-3 w-3 text-muted-foreground" />
+          {name}
+        </span>
+      );
+    },
+  },
+  {
     id: "sparkline",
     header: "7D",
     enableSorting: false,
     cell: ({ row }) => {
-      const history = row.original.vote_history_7d;
+      const history = row.original.vote_sparkline;
       if (!history) return <div className="text-muted-foreground/40">—</div>;
       return <Sparkline data={history} />;
     },
