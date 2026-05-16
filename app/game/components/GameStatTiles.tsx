@@ -13,10 +13,17 @@ function computeTileStats(history: HistoryItem[]) {
 
   const todayVotes = deltas.at(-1) ?? 0;
 
-  const last7 = deltas.slice(-7);
-  const peak7dIdx = last7.indexOf(Math.max(...last7));
-  const peak7d = last7[peak7dIdx];
-  const peak7dDate = sorted.at(-(7 - peak7dIdx))?.timestamp ?? null;
+  const latestTs = sorted.at(-1)?.timestamp ?? 0;
+  const cutoff7d = latestTs - 7 * 86400;
+  const last7 = sorted
+    .map((h, i) => ({ delta: deltas[i], timestamp: h.timestamp }))
+    .filter((x) => x.timestamp > cutoff7d);
+  const peak7dItem = last7.reduce(
+    (best, x) => (x.delta > best.delta ? x : best),
+    { delta: 0, timestamp: 0 }
+  );
+  const peak7d = peak7dItem.delta;
+  const peak7dDate = peak7dItem.timestamp || null;
 
   const peakAllTimeIdx = deltas.indexOf(Math.max(...deltas));
   const peakAllTime = deltas[peakAllTimeIdx];
@@ -35,7 +42,8 @@ function computeTileStats(history: HistoryItem[]) {
 const fmt = (n: number) =>
   Intl.NumberFormat("en", {
     notation: "compact",
-    maximumFractionDigits: 1,
+    minimumSignificantDigits: 3,
+    maximumSignificantDigits: 3,
   }).format(n);
 
 function fmtDate(ts: number | null) {
@@ -98,14 +106,14 @@ function Tile({
       </div>
       <div className="mt-3 flex items-end gap-2">
         <div
-          className={`text-4xl font-bold leading-none tabular-nums ${
+          className={`text-2xl font-bold leading-none tabular-nums ${
             highlight ? "text-primary" : ""
           } ${valueClassName ?? ""}`}
         >
           {value}
         </div>
         {date && (
-          <span className="mb-1 text-sm font-semibold text-foreground/70 leading-none">
+          <span className="text-sm font-semibold text-foreground/70 leading-none">
             {date}
           </span>
         )}

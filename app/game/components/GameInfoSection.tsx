@@ -1,5 +1,4 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ScrollWithChevron } from "@/components/ScrollWithChevron";
 import { ExternalLink } from "lucide-react";
 
 function cap(s: string) {
@@ -158,13 +157,13 @@ export function GameInfoSection({ game }: { game: any }) {
         </CardContent>
       </Card>
 
-      <Card>
-        <CardHeader className="pb-2">
+      <Card className="overflow-hidden">
+        <CardHeader className="pb-2 shrink-0">
           <CardTitle className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
             Description
           </CardTitle>
         </CardHeader>
-        <CardContent className="space-y-6">
+        <CardContent className="flex-1 min-h-0 overflow-y-auto space-y-6">
           <div className="space-y-1">
             <p className="text-[0.65rem] font-semibold uppercase tracking-wider text-muted-foreground">
               Short
@@ -181,12 +180,10 @@ export function GameInfoSection({ game }: { game: any }) {
               <p className="text-[0.65rem] font-semibold uppercase tracking-wider text-muted-foreground">
                 Full
               </p>
-              <ScrollWithChevron maxHeightClass="max-h-90">
-                <div
-                  className="prose max-w-none text-sm"
-                  dangerouslySetInnerHTML={{ __html: game.description }}
-                />
-              </ScrollWithChevron>
+              <div
+                className="prose max-w-none text-sm"
+                dangerouslySetInnerHTML={{ __html: game.description }}
+              />
             </div>
           )}
 

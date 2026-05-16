@@ -90,7 +90,7 @@ export function GameVotesChart({
   );
 
   const filteredData = React.useMemo(() => {
-    if (timeRange === "all") return chartData;
+    if (timeRange === "all" || chartData.length === 0) return chartData;
 
     const referenceDate = new Date(chartData.at(-1)!.date);
 

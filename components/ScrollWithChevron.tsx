@@ -21,7 +21,7 @@ export function ScrollWithChevron({
     if (!root) return;
 
     const viewport = root.querySelector(
-      "[data-radix-scroll-area-viewport]"
+      "[data-slot='scroll-area-viewport']"
     ) as HTMLDivElement | null;
 
     if (!viewport) return;
@@ -42,12 +42,11 @@ export function ScrollWithChevron({
 
   return (
     <div className="grid grid-rows-[1fr_auto]">
-      <ScrollArea
-        ref={rootRef}
-        className={`${maxHeightClass} overflow-y-auto pr-2`}
-      >
-        {children}
-      </ScrollArea>
+      <div ref={rootRef} className={`${maxHeightClass} flex flex-col overflow-hidden`}>
+        <ScrollArea className="flex-1 min-h-0 pr-2">
+          {children}
+        </ScrollArea>
+      </div>
 
       <ChevronDown
         className={`mx-auto mt-1 h-4 w-4 text-muted-foreground

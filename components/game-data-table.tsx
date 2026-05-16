@@ -88,7 +88,7 @@ export function GameDataTable({
         tags: tagsParam || undefined,
       })
       .then((res) => {
-        setData(res.data);
+        setData(res.data ?? []);
         setPage(res.meta.page);
         setTotalPages(res.meta.totalPages);
       });
