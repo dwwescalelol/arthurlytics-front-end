@@ -1,4 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { ScrollWithChevron } from "@/components/ScrollWithChevron";
 import { ExternalLink } from "lucide-react";
 
 function cap(s: string) {
@@ -135,13 +136,13 @@ export function GameInfoSection({ game }: { game: any }) {
 
   return (
     <div className="grid grid-cols-1 gap-6 lg:grid-cols-[2fr_5fr]">
-      <Card>
-        <CardHeader className="pb-2">
+      <Card className="flex flex-col overflow-hidden h-[25rem]">
+        <CardHeader className="pb-2 shrink-0">
           <CardTitle className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
             Game Info
           </CardTitle>
         </CardHeader>
-        <CardContent>
+        <CardContent className="flex-1 overflow-y-auto">
           <table className="w-full text-sm">
             <tbody>
               {rows.map(({ label, value }) => (
@@ -157,13 +158,13 @@ export function GameInfoSection({ game }: { game: any }) {
         </CardContent>
       </Card>
 
-      <Card className="overflow-hidden">
+      <Card className="flex flex-col overflow-hidden h-[25rem]">
         <CardHeader className="pb-2 shrink-0">
           <CardTitle className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
             Description
           </CardTitle>
         </CardHeader>
-        <CardContent className="flex-1 min-h-0 overflow-y-auto space-y-6">
+        <CardContent className="flex-1 overflow-y-auto space-y-6">
           <div className="space-y-1">
             <p className="text-[0.65rem] font-semibold uppercase tracking-wider text-muted-foreground">
               Short

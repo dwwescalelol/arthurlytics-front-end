@@ -11,13 +11,10 @@ export async function GET(req: NextRequest) {
   const sites = searchParams.get("sites") ?? "";
   const tags = searchParams.get("tags") ?? "";
 
-  const data = await client.getAllGames({
-    page,
-    sort,
-    order,
-    search,
-    sites,
-    tags,
-  });
-  return NextResponse.json(data);
+  try {
+    const data = await client.getAllGames({ page, sort, order, search, sites, tags });
+    return NextResponse.json(data);
+  } catch {
+    return NextResponse.json({ data: null, meta: { page: 1, count: 0, totalPages: 0 } }, { status: 500 });
+  }
 }
