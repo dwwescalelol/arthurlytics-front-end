@@ -68,7 +68,7 @@ export function GameRankChart({
   }, [history]);
 
   const filteredData = React.useMemo(() => {
-    if (timeRange === "all") return chartData;
+    if (timeRange === "all" || chartData.length === 0) return chartData;
     const last = new Date(chartData.at(-1)!.date);
     const days = timeRange === "7d" ? 7 : timeRange === "90d" ? 90 : 30;
     const start = new Date(last);
