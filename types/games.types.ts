@@ -29,9 +29,10 @@ export type GameStats = {
   weekly_delta_global_rank: NullableNumber;
   monthly_delta_global_rank: NullableNumber;
 
+  developer_name: string;
   is_new?: boolean;
-  new_in_top250?: boolean;
-  vote_history_7d?: number[];
+  is_new_top250?: boolean;
+  vote_sparkline?: number[];
 };
 
 type NullableBoolean = boolean | null;

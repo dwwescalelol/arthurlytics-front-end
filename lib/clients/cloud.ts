@@ -4,12 +4,14 @@ const CLOUD_API_BASE =
   "https://by9omosqo0.execute-api.eu-west-2.amazonaws.com/prod/";
 
 export const cloudClient: GamesClient = {
-  async getAllGames({ page, sort, order, search }) {
+  async getAllGames({ page, sort, order, search, sites, tags }) {
     const url = new URL("allgames", CLOUD_API_BASE);
     url.searchParams.set("page", page);
     if (sort) url.searchParams.set("sort", sort);
     if (search) url.searchParams.set("search", search);
     if (order) url.searchParams.set("order", order);
+    if (sites) url.searchParams.set("sites", sites);
+    if (tags) url.searchParams.set("tags", tags);
 
     const res = await fetch(url, { next: { revalidate: 86400 } });
     if (!res.ok) throw new Error("API fetch failed");
