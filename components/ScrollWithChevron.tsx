@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { ChevronDown } from "lucide-react";
 
 type ScrollWithChevronProps = {
@@ -14,45 +13,32 @@ export function ScrollWithChevron({
   children,
 }: ScrollWithChevronProps) {
   const [showChevron, setShowChevron] = React.useState(false);
-  const rootRef = React.useRef<HTMLDivElement | null>(null);
+  const ref = React.useRef<HTMLDivElement | null>(null);
 
   React.useEffect(() => {
-    const root = rootRef.current;
-    if (!root) return;
+    const el = ref.current;
+    if (!el) return;
 
-    const viewport = root.querySelector(
-      "[data-slot='scroll-area-viewport']"
-    ) as HTMLDivElement | null;
-
-    if (!viewport) return;
-
-    const update = () => {
-      const atBottom =
-        viewport.scrollTop + viewport.clientHeight >= viewport.scrollHeight - 1;
-
+    const update = () =>
       setShowChevron(
-        viewport.scrollHeight > viewport.clientHeight && !atBottom
+        el.scrollHeight > el.clientHeight &&
+          el.scrollTop + el.clientHeight < el.scrollHeight - 1
       );
-    };
 
     update();
-    viewport.addEventListener("scroll", update);
-    return () => viewport.removeEventListener("scroll", update);
+    el.addEventListener("scroll", update);
+    return () => el.removeEventListener("scroll", update);
   }, []);
 
   return (
-    <div className="grid grid-rows-[1fr_auto]">
-      <div ref={rootRef} className={`${maxHeightClass} flex flex-col overflow-hidden`}>
-        <ScrollArea className="flex-1 min-h-0 pr-2">
-          {children}
-        </ScrollArea>
+    <div>
+      <div ref={ref} className={`${maxHeightClass} overflow-y-auto pr-2`}>
+        {children}
       </div>
-
       <ChevronDown
-        className={`mx-auto mt-1 h-4 w-4 text-muted-foreground
-          transition-opacity duration-300 ease-out
-          ${showChevron ? "opacity-100" : "opacity-0"}
-        `}
+        className={`mx-auto mt-1 h-4 w-4 text-muted-foreground transition-opacity duration-300 ease-out ${
+          showChevron ? "opacity-100" : "opacity-0"
+        }`}
         aria-hidden
       />
     </div>

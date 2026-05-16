@@ -8,8 +8,8 @@ import { Sparkline } from "@/components/sparkline";
 
 const fmt = (n: number | null | undefined) => {
   if (n == null) return "—";
-  if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(n % 1_000_000 === 0 ? 0 : 2).replace(/\.?0+$/, "")}M`;
-  if (n >= 1_000) return `${(n / 1_000).toFixed(n % 1_000 === 0 ? 0 : 1).replace(/\.?0+$/, "")}K`;
+  if (Math.abs(n) >= 1_000)
+    return new Intl.NumberFormat("en", { notation: "compact", minimumSignificantDigits: 3, maximumSignificantDigits: 3 }).format(n);
   return String(n);
 };
 
@@ -26,7 +26,11 @@ const siteFilterFn: FilterFn<GameStats> = (row, columnId, filterValue) => {
 
 const Delta = ({ value }: { value?: number | null }) => {
   if (value === null || value === undefined || value === 0) {
-    return <span className="ml-1 text-[10px] text-muted-foreground/40">—</span>;
+    return (
+      <span className="ml-1.5 inline-flex items-center rounded px-2 py-0.5 text-[10px] font-medium tabular-nums bg-muted text-muted-foreground/50">
+        —
+      </span>
+    );
   }
 
   const isPositive = value > 0;
