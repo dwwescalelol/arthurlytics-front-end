@@ -22,18 +22,13 @@ export default async function Page({
   const sort = sortParam ?? "";
   const order = orderParam ?? "";
   const search = searchParam ?? "";
-  const result = await client.getAllGames({
-    page,
-    sort,
-    order,
-    search,
-  });
+  const result = await client.getAllGames({ page, sort, order, search }).catch(() => null);
 
   return (
     <GameDataTable
-      initialData={result.data}
-      initialPage={result.meta.page}
-      initialTotalPages={result.meta.totalPages}
+      initialData={result?.data ?? []}
+      initialPage={result?.meta.page ?? 1}
+      initialTotalPages={result?.meta.totalPages ?? 1}
       initialSort={sort}
     />
   );

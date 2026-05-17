@@ -13,7 +13,7 @@ export const cloudClient: GamesClient = {
     if (sites) url.searchParams.set("sites", sites);
     if (tags) url.searchParams.set("tags", tags);
 
-    const res = await fetch(url, { next: { revalidate: 86400 } });
+    const res = await fetch(url, { next: { revalidate: 600 } });
     if (!res.ok) throw new Error("API fetch failed");
 
     return res.json();
